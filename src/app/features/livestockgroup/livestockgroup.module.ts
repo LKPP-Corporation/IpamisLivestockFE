@@ -4,16 +4,18 @@ import { CommonModule } from '@angular/common';
 import { LivestockgroupRoutingModule } from './livestockgroup-routing.module';
 import { FormComponent } from './form/form.component';
 import { ListComponent } from './list/list.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+
 
 
 @NgModule({
   declarations: [
-    FormComponent,
-    ListComponent
+    ListComponent,
+    FormComponent
   ],
   imports: [
     CommonModule,
-    LivestockgroupRoutingModule
+    LivestockgroupRoutingModule, SharedModule
   ]
 })
 export class LivestockgroupModule { }
