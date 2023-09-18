@@ -1,23 +1,23 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { Subject, takeUntil } from 'rxjs';
-import { Livestockgroup } from '../livestockgroup';
-import { LivestockgroupService } from '../livestockgroup.service';
-import { Router } from '@angular/router';
+import { LivestockService } from '../livestock.service';
+import { Livestock } from '../livestock';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent {
+export class ListComponent implements OnInit, OnDestroy {
   @ViewChild('dt')
   dt!: Table;
   unsubscribe$: Subject<void> = new Subject<void>();
-  constructor(private svc: LivestockgroupService, private confirmationService: ConfirmationService, private messageService: MessageService, private router: Router) { }
+  constructor(private lvc: LivestockService, private confirmationService: ConfirmationService, private messageService: MessageService, private router: Router) { }
 
-  listData: Livestockgroup[] = [];
+  listData: Livestock[] = [];
 
   totalRecords: number = 0;
 
@@ -32,11 +32,11 @@ export class ListComponent {
     //throw new Error('Method not implemented.');
   }
 
-  editData(s?: Livestockgroup) {
-    this.router.navigate(['livestockgroup/form', { id: s != null ? s.code : null }]);
+  editData(s?: Livestock) {
+    this.router.navigate(['livestock/form', { id: s != null ? s.id : null }]);
   }
 
-  deleteData(event: Event, s: Livestockgroup) {
+  deleteData(event: Event, s: Livestock) {
     console.log(s);
     console.log(event);
     this.confirmationService.confirm({
@@ -44,7 +44,7 @@ export class ListComponent {
       message: 'Are you sure that you want to proceed?',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.svc.delete(s.code!).pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
+        this.lvc.delete(s.id!).pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
           this.reloadList({ first: 0, rows: 10, sortField: 'code', sortOrder: 1, globalFilter: '' });
           this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Deleted' });
         });
@@ -63,7 +63,7 @@ export class ListComponent {
       vv = { first: 0, rows: 10, sortField: 'id', sortOrder: 1, globalFilter: '' };
     }
     //console.log(vv);
-    this.svc.getList(vv).pipe(takeUntil(this.unsubscribe$)).subscribe((res: any) => {
+    this.lvc.getList(vv).pipe(takeUntil(this.unsubscribe$)).subscribe((res: any) => {
       this.listData = res.content;
       this.totalRecords = res.totalElements;
       this.loading = false;
