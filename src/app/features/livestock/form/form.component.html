@@ -1,0 +1,109 @@
+
+<p-toast></p-toast>
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+<div class="surface-ground px-4 py-8 md:px-6 lg:px-8">
+  <!-- <form [formGroup] = "formdata" (ngSubmit) = "onClickSubmit(formdata.value)" > -->
+  <div class="text-900 font-medium text-xl mb-3">Livestock Info Registration</div>
+  <div class="surface-card p-4 shadow-2 border-round p-fluid">
+      <div class="grid formgrid p-fluid">
+
+        <div class="field mb-4 col-12 md:col-6">
+          <label for="enterprise">Enterprise: </label><br>
+          <input type="text" id="enterprise" name="enterprise"><br><br>
+          </div>
+
+          <div class="field mb-4 col-12 md:col-6">
+            <label for="livestockname">Livestock Name(Nama Ternakan): </label><br>
+            <input type="text" id="livestockname" name="livestockname"><br><br>
+            </div>
+
+        <!-- <div class="field mb-4 col-12 md:col-6">
+             <label for="enterpriseInfo">Enterprise:</label><br>
+             <select [(ngModel)]="selectedValue" name="enterpriseInfo" id="enterpriseInfo" >
+
+                <option *ngFor="let enterpriseInfo of (enterprises|async)" [value]="enterpriseInfo.descp">
+                  {{enterpriseInfo.code}}
+                </option>
+            </select> 
+
+          
+          </div> -->
+
+          <div class="field mb-4 col-12 md:col-6">
+          <label for="dob">Date Of Birth (Tarikh Lahir): </label><br>
+          <input type="date" id="dob" name="dob">
+          </div>
+
+          <div class="field mb-4 col-12 md:col-6">
+            <label for="sex">Sex (Jantina): </label><br>
+            <select name="sex" id="sex">
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+            </select>
+            </div>
+
+            <div class="field mb-4 col-12 md:col-6">
+              <label for="breed">Breed (Baka): </label><br>
+              <input type="text" id="breed" name="breed"><br><br>
+              </div>
+
+              <div class="field mb-4 col-12 md:col-6">
+                <label for="regId">Reg ID/Ear Tag (No ID/Tag Telinga): </label><br>
+                <input type="text" id="regId" name="regId"><br><br>
+                </div>
+
+                <div class="field mb-4 col-12 md:col-6">
+                  <label for="blood">% Blood (Peratusan Baka): </label><br>
+                  <input type="text" id="blood" name="blood"><br><br>
+                  </div>
+
+                  <div class="field mb-4 col-12 md:col-6">
+                    <label for="origin">Origin(Asal): </label><br>
+                    <input type="text" id="origin" name="origin"><br><br>
+                    </div>
+
+                    <div class="field mb-4 col-12 md:col-6">
+                      <label for="date2">Date Deceased (Tarikh Kematian): </label><br>
+                      <input type="date" id="date2" name="date2">
+                      </div>
+                      
+                  <div class="field mb-4 col-12 md:col-6">
+                    <label for="cod">Cause Of Death(Punca Kematian): </label><br>
+                    <input type="text" id="cod" name="cod"><br><br>
+                    </div>
+
+                    <div class="field mb-4 col-12 md:col-6">
+                      <label for="date3">Date Purchased (Tarikh Pembelian): </label><br>
+                      <input type="date" id="date3" name="date3">
+                      </div>
+
+                      <div class="field mb-4 col-12 md:col-6">
+                        <label for="pp">Price Paid(Harga Dibayar): </label><br>
+                        <input type="text" id="pp" name="pp"><br><br>
+                        </div>
+
+                        <div class="field mb-4 col-12 md:col-6">
+                          <label for="date4">Date Sold (Tarikh Dijual): </label><br>
+                          <input type="date" id="date4" name="date4">
+                          </div>
+
+                          <div class="field mb-4 col-12 md:col-6">
+                            <label for="pr">Price Received(Harga Diterima): </label><br>
+                            <input type="text" id="pr" name="pr"><br><br>
+                            </div>
+
+                            <div class="field mb-4 col-12 md:col-6">
+                              <label for="buyer">Buyer(Pembeli): </label><br>
+                              <input type="text" id="buyer" name="buyer"><br><br>
+                              </div>
+
+                              <div class="field mb-4 col-12 md:col-6">
+                                <label for="disposal">Reason For Disposal(Alasan Penjualan): </label><br>
+                                <input type="text" id="disposal" name="disposal"><br><br>
+                                </div>
+
+      <div class="flex justify-center">
+        <button pButton pRipple label="Back" (click)="cancel()" icon="pi pi-times" class="mr-2 w-auto p-button-warning"></button> 
+    <button pButton pRipple label="Save" (click)="save()" icon="pi pi-file" class="w-auto"></button>
+  </div>
+</div>
