@@ -36,6 +36,10 @@ export class ListComponent implements OnInit, OnDestroy {
     this.router.navigate(['livestock/form', { id: s != null ? s.id : null }]);
   }
 
+  changeStatusData(s?: Livestock) {
+    this.router.navigate(['livestock/form', { id: s != null ? s.id : null }]);
+  }
+
   deleteData(event: Event, s: Livestock) {
     console.log(s);
     console.log(event);
@@ -45,7 +49,7 @@ export class ListComponent implements OnInit, OnDestroy {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.lvc.delete(s.id!).pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
-          this.reloadList({ first: 0, rows: 10, sortField: 'code', sortOrder: 1, globalFilter: '' });
+          this.reloadList({ first: 0, rows: 10, sortField: 'id', sortOrder: 1, globalFilter: '' });
           this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Deleted' });
         });
       },
