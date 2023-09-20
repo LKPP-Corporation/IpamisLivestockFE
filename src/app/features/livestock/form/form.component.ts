@@ -6,6 +6,7 @@ import { MessageService } from 'primeng/api';
 import { LivestockService } from '../livestock.service';
 import { Livestock } from '../livestock';
 import { EnterpriseInfo } from '../enterpriseInfo';
+import { SpeciesInfo } from '../speciesInfo';
 
 
 
@@ -15,6 +16,42 @@ import { EnterpriseInfo } from '../enterpriseInfo';
   styleUrls: ['./form.component.scss'], providers: [DialogService]
 })
 export class FormComponent implements OnInit {
+
+  EnterpriseList: EnterpriseInfo[] = [];
+  selectedEnterprise:any;
+  selectedSex:any;
+  sex:any;
+
+  selectedBreed:any;
+  BreedList:SpeciesInfo[]=[];
+  
+  constructor(private service:LivestockService){}
+
+  ngOnInit(): void {
+    this.getEnt();
+    this.getBreed();
+
+    this.sex = [
+      {name: 'M', value: 'Male'},
+      {name: 'F', value:'Female'}
+  
+    
+    ];
+    
+  }
+
+  getBreed(){
+    this.service.getBreed().subscribe((data)=>{
+      this.BreedList=data.code;
+    });
+  }
+
+  getEnt(){
+    this.service.getEnterpriseList().subscribe((data)=>{
+      this.EnterpriseList=data.content;
+      //console.log(this.EnterpriseList.content);
+    });
+  }
 
   ref!: DynamicDialogRef;
   unsubscribe$: Subject<void> = new Subject<void>();
@@ -28,6 +65,31 @@ export class FormComponent implements OnInit {
 
   parameterTypeId!: number | null;
   router: any;
+
+
+//   DROPDOWN_LIST: enterpriseInfo[] = []; 
+
+
+// CodeNextBtn() {
+//           this.LivestockService.getList(0,this.pageSize).subscribe(
+//             (templateResponse) =>{
+//               this.productData=         //binding database values to productData
+//   templateResponse.productData;
+//               this.totalRecords=templateResponse.totalRecords;
+//               this.referenceShowProgressBar
+
+//               // if templateResponse.productData return type is templateData 
+//               this.DROPDOWN_LIST = templateResponse.productData;
+
+//             },
+//              (error) => {
+//               console.error(error);
+//               this.referenceShowProgressBar = false;
+//             }
+            
+//           );
+
+// } 
 
 
 
@@ -108,7 +170,5 @@ export class FormComponent implements OnInit {
   cancel() {
     this.router.navigate([this.homelink]);
   }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+  
 }

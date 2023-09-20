@@ -16,6 +16,14 @@ export class LivestockService {
     this.apiroot = environment.apiUrl;
   }
 
+  getEnterpriseList():Observable<any>{
+    return this.http.get<any>(this.apiroot+'/enterpriseInfo/listall');
+  }
+
+  getBreed():Observable<any>{
+    return this.http.get<any>(this.apiroot+'/speciesInfo/list');
+  }
+
   getList(params: any) {
     const requestParams = {
       params: {
@@ -42,7 +50,5 @@ export class LivestockService {
   getEnterprise(id: number): Observable<EnterpriseInfo> {
     return this.http.get<EnterpriseInfo>(`${this.apiroot}/api/v1/soil/${id}`);
 }
-getEnterpriseList():Observable<any>{
-  return this.http.get(`${this.apiroot}`);
-}
+
 }
