@@ -24,16 +24,16 @@ export class SoilService {
       }
     };
     console.log(requestParams);
-    return this.http.get(`${this.apiroot}/api/v1/soil/list`, requestParams);
+    return this.http.get(`${this.apiroot}/soil/list`, requestParams);
   }
   delete(id: number) {
-    return this.http.delete(`${this.apiroot}/api/v1/soil/${id}`);
+    return this.http.delete(`${this.apiroot}/soil/${id}`);
   }
 
   save(data: Soil) {
-    return this.http.post(`${this.apiroot}/api/v1/soil`, data);
+    return this.http.post(`${this.apiroot}/soil`, data);
   }
   getData(id: number) {
-    return this.http.get(`${this.apiroot}/api/v1/soil/${id}`);
+    return this.http.get(`${this.apiroot}/soil/${id}`);
   }
 }

@@ -69,7 +69,7 @@
 
         <div class="field mb-4 col-12 md:col-6">
           <label>Breed(Baka):</label>
-        <p-dropdown [(ngModel)]="selectedBreed" [options]="BreedList" optionValue="code" optionLabel="descp" [filter]="true" filterBy="descp" [showClear]="true" placeholder="Select breed">
+        <p-dropdown [(ngModel)]="selectedBreed" [options]="BreedList" optionValue="code" optionLabel="descp" [filter]="true" filterBy="code" [showClear]="true" placeholder="Select breed">
           <ng-template let-breed pTemplate="item">
               <div class="flex align-items-center">
                   <!-- <img src="assets/demo/images/flag/flag_placeholder.png" [class]="'mr-2 flag flag-' + fields.id" style="width:18px"/>-->

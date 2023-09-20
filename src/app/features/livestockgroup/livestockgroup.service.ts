@@ -23,16 +23,16 @@ export class LivestockgroupService {
       }
     };
     console.log(requestParams);
-    return this.http.get(`${this.apiroot}/api/v1/enterpriseInfo/list`, requestParams);
+    return this.http.get(`${this.apiroot}/enterpriseInfo/list`, requestParams);
   }
   delete(code: String) {
-    return this.http.delete(`${this.apiroot}/api/v1/enterpriseInfo/${code}`);
+    return this.http.delete(`${this.apiroot}/enterpriseInfo/${code}`);
   }
 
   save(data: Livestockgroup) {
-    return this.http.post(`${this.apiroot}/api/v1/enterpriseInfo`, data);
+    return this.http.post(`${this.apiroot}/enterpriseInfo`, data);
   }
   getData(code: String) {
-    return this.http.get(`${this.apiroot}/api/v1/enterpriseInfo/${code}`);
+    return this.http.get(`${this.apiroot}/enterpriseInfo/${code}`);
   }
 }

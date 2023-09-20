@@ -34,21 +34,21 @@ export class LivestockService {
       }
     };
     console.log(requestParams);
-    return this.http.get(`${this.apiroot}/api/v1/soil/list`, requestParams);
+    return this.http.get(this.apiroot+'/soil/list', requestParams);
   }
   delete(id: number) {
-    return this.http.delete(`${this.apiroot}/api/v1/soil/${id}`);
+    return this.http.delete(`${this.apiroot}/soil/${id}`);
   }
 
   save(data: Livestock) {
-    return this.http.post(`${this.apiroot}/api/v1/soil`, data);
+    return this.http.post(`${this.apiroot}/soil`, data);
   }
   getData(id: number) {
-    return this.http.get(`${this.apiroot}/api/v1/soil/${id}`);
+    return this.http.get(`${this.apiroot}/soil/${id}`);
   }
 
   getEnterprise(id: number): Observable<EnterpriseInfo> {
-    return this.http.get<EnterpriseInfo>(`${this.apiroot}/api/v1/soil/${id}`);
+    return this.http.get<EnterpriseInfo>(`${this.apiroot}/soil/${id}`);
 }
 
 }

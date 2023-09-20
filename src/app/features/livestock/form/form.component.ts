@@ -42,7 +42,7 @@ export class FormComponent implements OnInit {
 
   getBreed(){
     this.service.getBreed().subscribe((data)=>{
-      this.BreedList=data.code;
+      this.BreedList=data;
     });
   }
 
