@@ -14,11 +14,11 @@ export class MenuService {
   }
 
   menu() {
-    return this.http.get(`${this.apiroot}/api/v1/menu`);
+    return this.http.get(`${this.apiroot}/menu`);
   }
 
   menus() {
-    return this.http.get<MenuItem[]>(`${this.apiroot}/api/v1/menu/top`);
+    return this.http.get<MenuItem[]>(`${this.apiroot}/menu/top`);
   }
 
   getList(params: any) {
@@ -31,16 +31,16 @@ export class MenuService {
       }
     };
     console.log(requestParams);
-    return this.http.get(`${this.apiroot}/api/v1/menu/list`, requestParams);
+    return this.http.get(`${this.apiroot}/menu/list`, requestParams);
   }
   delete(id: number) {
-    return this.http.delete(`${this.apiroot}/api/v1/menu/${id}`);
+    return this.http.delete(`${this.apiroot}/menu/${id}`);
   }
 
   save(data: MenuItem) {
-    return this.http.post(`${this.apiroot}/api/v1/menu`, data);
+    return this.http.post(`${this.apiroot}/menu`, data);
   }
   getData(id: number) {
-    return this.http.get(`${this.apiroot}/api/v1/menu/${id}`);
+    return this.http.get(`${this.apiroot}/menu/${id}`);
   }
 }

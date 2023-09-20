@@ -24,21 +24,21 @@ export class UserService {
       }
     };
     console.log(requestParams);
-    return this.http.get(`${this.apiroot}/api/v1/user/list`, requestParams);
+    return this.http.get(`${this.apiroot}/user/list`, requestParams);
   }
   delete(id: number) {
-    return this.http.delete(`${this.apiroot}/api/v1/user/${id}`);
+    return this.http.delete(`${this.apiroot}/user/${id}`);
   }
 
   save(data: User) {
-    return this.http.post(`${this.apiroot}/api/v1/user`, data);
+    return this.http.post(`${this.apiroot}/user`, data);
   }
   getData(id: number) {
-    return this.http.get(`${this.apiroot}/api/v1/user/${id}`);
+    return this.http.get(`${this.apiroot}/user/${id}`);
   }
 
   getRoles() {
-    return this.http.get<string[]>(`${this.apiroot}/api/v1/user/roles`);
+    return this.http.get<string[]>(`${this.apiroot}/user/roles`);
   }
 
 
