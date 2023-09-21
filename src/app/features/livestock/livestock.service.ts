@@ -5,6 +5,7 @@ import { Livestock } from './livestock';
 import { EnterpriseInfo } from './enterpriseInfo';
 import { Observable } from 'rxjs';
 import { CeLivestock } from './CeLivestock';
+import { Livestockstatus } from '../livestockstatus/livestockstatus';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +45,11 @@ export class LivestockService {
     return this.http.delete(`${this.apiroot}/ceLivestock/${id}`);
   }
 
-  save(data: CeLivestock) {
+  save(data: Livestockstatus) {
+    return this.http.post(`${this.apiroot}/livestockStatus`, data);
+  }
+
+  saveCeLivestock(data: CeLivestock) {
     return this.http.post(`${this.apiroot}/ceLivestock`, data);
   }
   getData(id: number) {

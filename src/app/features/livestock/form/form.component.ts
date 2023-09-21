@@ -74,6 +74,19 @@ export class FormComponent implements OnInit {
     quantity: 0,
   };
 
+  data1: CeLivestock = {
+    name: '',
+    entercode: 0,
+    breedcode: 0,
+    enterdesc: '',
+    breeddesc: '',
+    dob: '',
+    purchasedt: '',
+    purchaseamt: 0,
+    origin: '',
+    currstatus: ''
+  };
+
   parameterTypeId!: number | null;
   //router: any;
 
@@ -180,6 +193,18 @@ export class FormComponent implements OnInit {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: err });
       }
     });
+
+    this.lvc.save(this.data1).pipe(takeUntil(this.unsubscribe$)).subscribe({
+      next: dt => {
+        console.log(dt);
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Saved' });
+        this.router.navigate([this.homelink]);
+      }, error: err => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: err });
+      }
+    });
+
+
   }
 
   
