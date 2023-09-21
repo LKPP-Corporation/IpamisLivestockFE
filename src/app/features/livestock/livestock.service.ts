@@ -4,6 +4,7 @@ import { environment } from '@env/environment';
 import { Livestock } from './livestock';
 import { EnterpriseInfo } from './enterpriseInfo';
 import { Observable } from 'rxjs';
+import { CeLivestock } from './CeLivestock';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,9 @@ export class LivestockService {
     return this.http.get<any>(this.apiroot+'/speciesInfo/list');
   }
 
+  getSire():Observable<any>{
+    return this.http.get<any>(this.apiroot+'/ceLivestock/list');
+  }
   getList(params: any) {
     const requestParams = {
       params: {
@@ -40,7 +44,7 @@ export class LivestockService {
     return this.http.delete(`${this.apiroot}/ceLivestock/${id}`);
   }
 
-  save(data: Livestock) {
+  save(data: CeLivestock) {
     return this.http.post(`${this.apiroot}/ceLivestock`, data);
   }
   getData(id: number) {

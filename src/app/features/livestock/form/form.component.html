@@ -26,7 +26,7 @@
 
         <div class="field mb-4 col-12 md:col-6">
         <label>Livestock Name(Nama Ternakan):</label>
-          <input type="text" pInputText> 
+          <input type="text" pInputText [(ngModel)]="data.id"> 
           <span class="ml-2"></span>
         </div>
          
@@ -83,13 +83,13 @@
 
               <div class="field mb-4 col-12 md:col-6">
                 <label for="regId">Reg ID/Ear Tag (No ID/Tag Telinga): </label><br>
-                <input type="text" pInputText> 
+                <input type="text" pInputText [(ngModel)]="data.id"> 
                 <span class="ml-2"></span>
                 </div>
 
                 <div class="field mb-4 col-12 md:col-6">
                   <label for="blood">% Blood (Peratusan Baka): </label><br>
-                  <input type="text" pInputText> 
+                  <input type="text" pInputText [(ngModel)]="data"> 
                 <span class="ml-2"></span>
                   </div>
 
@@ -143,6 +143,31 @@
                                 <input type="text" pInputText> 
                                 <span class="ml-2"></span>
                                 </div>
+
+                                <div class="field mb-4 col-12 md:col-6">
+                                  <label>Sire(Pejantan):</label>
+                                <p-dropdown [(ngModel)]="selectedSire" [options]="SireList" optionValue="id" optionLabel="name" [filter]="true" filterBy="id" [showClear]="true" placeholder="Select sire">
+                                  <ng-template let-sire pTemplate="item">
+                                      <div class="flex align-items-center">
+                                          <!-- <img src="assets/demo/images/flag/flag_placeholder.png" [class]="'mr-2 flag flag-' + fields.id" style="width:18px"/>-->
+                                          <div>{{sire.id}} - {{sire.name}}</div>
+                                      </div>
+                                  </ng-template>
+                              </p-dropdown>
+                              </div>
+
+
+                              <div class="field mb-4 col-12 md:col-6">
+                                <label>Dam(Ibu):</label>
+                              <p-dropdown [(ngModel)]="selectedBreed" [options]="BreedList" optionValue="code" optionLabel="descp" [filter]="true" filterBy="code" [showClear]="true" placeholder="Select breed">
+                                <ng-template let-breed pTemplate="item">
+                                    <div class="flex align-items-center">
+                                        <!-- <img src="assets/demo/images/flag/flag_placeholder.png" [class]="'mr-2 flag flag-' + fields.id" style="width:18px"/>-->
+                                        <div>{{breed.code}} - {{breed.descp}}</div>
+                                    </div>
+                                </ng-template>
+                            </p-dropdown>
+                            </div>
 
       <div class="flex justify-center">
         <button pButton pRipple label="Back" (click)="cancel()" icon="pi pi-times" class="mr-2 w-auto p-button-warning"></button> 

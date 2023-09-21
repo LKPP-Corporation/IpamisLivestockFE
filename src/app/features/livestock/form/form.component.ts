@@ -7,6 +7,7 @@ import { LivestockService } from '../livestock.service';
 import { Livestock } from '../livestock';
 import { EnterpriseInfo } from '../enterpriseInfo';
 import { SpeciesInfo } from '../speciesInfo';
+import { CeLivestock } from '../CeLivestock';
 
 
 
@@ -21,15 +22,19 @@ export class FormComponent implements OnInit {
   selectedEnterprise:any;
   selectedSex:any;
   sex:any;
+  selectedSire:any;
 
   selectedBreed:any;
   BreedList:SpeciesInfo[]=[];
+
+  SireList:CeLivestock[]=[];
   
-  constructor(private service:LivestockService){}
+  constructor(private service:LivestockService,private router: Router, private route: ActivatedRoute, private lvc: LivestockService,private messageService: MessageService){}
 
   ngOnInit(): void {
     this.getEnt();
     this.getBreed();
+    this.getSire();
 
     this.sex = [
       {name: 'M', value: 'Male'},
@@ -42,8 +47,14 @@ export class FormComponent implements OnInit {
 
   getBreed(){
     this.service.getBreed().subscribe((data)=>{
-      this.BreedList=data;
+      this.BreedList=data.content;
     });
+  }
+
+  getSire(){
+    this.service.getSire().subscribe((data)=>{
+      this.SireList=data;
+    })
   }
 
   getEnt(){
@@ -64,7 +75,7 @@ export class FormComponent implements OnInit {
   };
 
   parameterTypeId!: number | null;
-  router: any;
+  //router: any;
 
 
 //   DROPDOWN_LIST: enterpriseInfo[] = []; 
@@ -151,24 +162,25 @@ export class FormComponent implements OnInit {
   //   this.router.navigate([this.homelink]);
   // }
 
-  save() {
-  //   console.log(this.data);
-  //   this.lvc.save(this.data).pipe(takeUntil(this.unsubscribe$)).subscribe({
-  //     next: dt => {
-  //       console.log(dt);
-  //       this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Saved' });
-  //       this.router.navigate([this.homelink]);
-  //     }, error: err => {
-  //       this.messageService.add({ severity: 'error', summary: 'Error', detail: err });
-  //     }
-  //   });
- }
-  // unsubscribe$(unsubscribe$: any): any {
-  //   throw new Error('Method not implemented.');
-  // }
+
 
   cancel() {
     this.router.navigate([this.homelink]);
   }
+
+  
+  save() {
+    console.log(this.data);
+    this.lvc.save(this.data).pipe(takeUntil(this.unsubscribe$)).subscribe({
+      next: dt => {
+        console.log(dt);
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Saved' });
+        this.router.navigate([this.homelink]);
+      }, error: err => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: err });
+      }
+    });
+  }
+
   
 }
