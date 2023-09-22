@@ -5,6 +5,7 @@ import { Livestock } from './livestock';
 import { EnterpriseInfo } from './enterpriseInfo';
 import { Observable } from 'rxjs';
 import { CeLivestock } from './CeLivestock';
+import { Livestockstatus } from '../livestockstatus/livestockstatus';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class LivestockService {
   }
 
   getEnterpriseList():Observable<any>{
-    return this.http.get<any>(this.apiroot+'/enterpriseInfo/listall');
+    return this.http.get<any>(this.apiroot+'/enterpriseInfo/list');
   }
 
   getBreed():Observable<any>{
@@ -28,6 +29,12 @@ export class LivestockService {
   getSire():Observable<any>{
     return this.http.get<any>(this.apiroot+'/ceLivestock/list');
   }
+
+  getDam():Observable<any>{
+    return this.http.get<any>(this.apiroot+'/ceLivestock/list');
+  }
+
+ 
   getList(params: any) {
     const requestParams = {
       params: {
@@ -44,15 +51,19 @@ export class LivestockService {
     return this.http.delete(`${this.apiroot}/ceLivestock/${id}`);
   }
 
-  save(data: CeLivestock) {
-    return this.http.post(`${this.apiroot}/ceLivestock`, data);
+  save(data: Livestockstatus) {
+    return this.http.post(`${this.apiroot}/livestockStatus`, data);
+  }
+
+  saveCeLivestock(data1: CeLivestock) {
+    return this.http.post(`${this.apiroot}/ceLivestock`, data1);
   }
   getData(id: number) {
     return this.http.get(`${this.apiroot}/ceLivestock/${id}`);
   }
 
-  getEnterprise(id: number): Observable<EnterpriseInfo> {
-    return this.http.get<EnterpriseInfo>(`${this.apiroot}/ceLivestock/${id}`);
+  getEnterprise(entercode: number): Observable<EnterpriseInfo> {
+    return this.http.get<EnterpriseInfo>(`${this.apiroot}/ceLivestock/${entercode}`);
 }
 
 }

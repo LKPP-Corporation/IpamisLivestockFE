@@ -23,11 +23,13 @@ export class FormComponent implements OnInit {
   selectedSex:any;
   sex:any;
   selectedSire:any;
+  selectedDam:any;
 
   selectedBreed:any;
   BreedList:SpeciesInfo[]=[];
 
   SireList:CeLivestock[]=[];
+  DamList:CeLivestock[]=[];
   
   constructor(private service:LivestockService,private router: Router, private route: ActivatedRoute, private lvc: LivestockService,private messageService: MessageService){}
 
@@ -57,6 +59,12 @@ export class FormComponent implements OnInit {
     })
   }
 
+  getDam(){
+    this.service.getDam().subscribe((data)=>{
+      this.DamList=data;
+    })
+  }
+
   getEnt(){
     this.service.getEnterpriseList().subscribe((data)=>{
       this.EnterpriseList=data.content;
@@ -72,6 +80,19 @@ export class FormComponent implements OnInit {
     remark: '',
     price: 0,
     quantity: 0,
+  };
+
+  data1: CeLivestock = {
+    name: '',
+    entercode: 0,
+    breedcode: 0,
+    enterdesc: '',
+    breeddesc: '',
+    dob: '',
+    purchasedt: '',
+    purchaseamt: 0,
+    origin: '',
+    currstatus: ''
   };
 
   parameterTypeId!: number | null;
@@ -170,6 +191,9 @@ export class FormComponent implements OnInit {
 
   
   save() {
+
+    this.data1.entercode = this.selectedEnterprise;
+    console.log(this.selectedEnterprise.descp);
     console.log(this.data);
     this.lvc.save(this.data).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: dt => {
@@ -180,6 +204,25 @@ export class FormComponent implements OnInit {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: err });
       }
     });
+
+   // this.data1.entercode = this.selectedEnterprise;
+    //this.data1.enterdesc = this.selectedEnterprise;
+  //  this.data1.breedcode = this.selectedBreed;
+  //  this.data1.breeddesc = this.selectedBreed;
+
+    this.data1.enterdesc = this.selectedEnterprise.entercode;
+    console.log(this.data1);
+    this.lvc.save(this.data1).pipe(takeUntil(this.unsubscribe$)).subscribe({
+      next: dt => {
+        console.log(dt);
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Saved' });
+        this.router.navigate([this.homelink]);
+      }, error: err => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: err });
+      }
+    });
+
+
   }
 
   
