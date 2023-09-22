@@ -4,6 +4,7 @@
 <div class="surface-ground px-4 py-8 md:px-6 lg:px-8">
   <!-- <form [formGroup] = "formdata" (ngSubmit) = "onClickSubmit(formdata.value)" > -->
   <div class="text-900 font-medium text-xl mb-3">Livestock Info Registration</div>
+
   <div class="surface-card p-4 shadow-2 border-round p-fluid">
       <div class="grid formgrid p-fluid">
 
@@ -11,7 +12,7 @@
           <label for="enterprise">Enterprise: </label><br>
           <input type="text" id="enterprise" name="enterprise"><br><br>
           </div> -->
-
+          
           <div class="field mb-4 col-12 md:col-6">
             <label>Enterprise:</label>
           <p-dropdown [(ngModel)]="selectedEnterprise" [options]="EnterpriseList" optionValue="code" optionLabel="descp" [filter]="true" filterBy="descp" [showClear]="true" placeholder="Select enterprise">
@@ -29,6 +30,12 @@
           <input type="text" pInputText [(ngModel)]="data.id"> 
           <span class="ml-2"></span>
         </div>
+
+        <div class="field mb-4 col-12 md:col-6">
+          <label>Status(Status):</label>
+            <input type="text" pInputText [(ngModel)]="data1.currstatus"> 
+            <span class="ml-2"></span>
+          </div>
          
 
           <!-- <div class="field mb-4 col-12 md:col-6">
@@ -99,16 +106,16 @@
                     <span class="ml-2"></span>
                     </div>
 
-                    <div class="field mb-4 col-12 md:col-6">
+                    <!-- <div class="field mb-4 col-12 md:col-6">
                       <label for="date2">Date Deceased (Tarikh Kematian): </label><br>
                       <p-calendar inputId="basic"></p-calendar>
-                      </div>
+                      </div> -->
                       
-                  <div class="field mb-4 col-12 md:col-6">
+                  <!-- <div class="field mb-4 col-12 md:col-6">
                     <label for="cod">Cause Of Death(Punca Kematian): </label><br>
                     <input type="text" pInputText> 
                     <span class="ml-2"></span>
-                    </div>
+                    </div> -->
 
                     <div class="field mb-4 col-12 md:col-6">
                       <label for="date3">Date Purchased (Tarikh Pembelian): </label><br>
@@ -121,30 +128,55 @@
                         <span class="ml-2"></span>
                         </div>
 
-                        <div class="field mb-4 col-12 md:col-6">
+
+       </div>
+       </div>
+                        <!-- <div class="field mb-4 col-12 md:col-6">
                           <label for="date4">Date Sold (Tarikh Dijual): </label><br>
                           <p-calendar inputId="basic" ></p-calendar>
-                          </div>
+                          </div> -->
 
-                          <div class="field mb-4 col-12 md:col-6">
-                            <label for="pr">Price Received(Harga Diterima): </label><br>
-                            <input type="text" pInputText> 
-                            <span class="ml-2"></span>
+                          
+
+                              
+
+                              <!-- <h5>Modal</h5>
+<p-button (click)="showModalDialog()" icon="pi pi-external-link" label="Show"></p-button>
+<p-dialog header="Header" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
+    [draggable]="false" [resizable]="false">
+    <p class="m-0">Ada ibu atau pejantan?</p>
+        <ng-template pTemplate="footer">
+        <p-button icon="pi pi-times" (click)="displayModal=false" label="YES" styleClass="p-button-text"></p-button>
+        <p-button icon="pi pi-trash" (click)="displayModal=false" label="NO" styleClass="p-button-text"></p-button>
+        </ng-template>
+</p-dialog> -->
+
+<p-divider></p-divider>
+<div class="text-900 font-medium text-xl mb-3">Pedigree Info</div>
+<div class="surface-card p-4 shadow-2 border-round p-fluid">
+  <div class="grid formgrid p-fluid">
+
+   
+<div class="field mb-4 col-12 md:col-6">
+    <label for="username2" class="block">Dam(Ibu):</label>
+    <input id="username2" type="username" aria-describedby="username2-help" class="ng-invalid ng-dirty" pInputText />
+    <small id="username2-help" class="p-error block">please enter dam if dam not in dam list</small>
+</div>
+
+  
+                              <div class="field mb-4 col-12 md:col-6">
+                                <label>Dam(Ibu):</label>
+                              <p-dropdown [(ngModel)]="selectedDam" [options]="DamList" optionValue="id" optionLabel="name" [filter]="true" filterBy="id" [showClear]="true" placeholder="Select dam">
+                                <ng-template let-dam pTemplate="item">
+                                    <div class="flex align-items-center">
+                                        
+                                        <div>{{dam.id}} - {{dam.name}}</div>
+                                    </div>
+                                </ng-template>
+                            </p-dropdown>
                             </div>
 
-                            <div class="field mb-4 col-12 md:col-6">
-                              <label for="buyer">Buyer(Pembeli): </label><br>
-                              <input type="text" pInputText> 
-                              <span class="ml-2"></span>
-                              </div>
-
                               <div class="field mb-4 col-12 md:col-6">
-                                <label for="disposal">Reason For Disposal(Alasan Penjualan): </label><br>
-                                <input type="text" pInputText> 
-                                <span class="ml-2"></span>
-                                </div>
-
-                                <!-- <div class="field mb-4 col-12 md:col-6">
                                   <label>Sire(Pejantan):</label>
                                 <p-dropdown [(ngModel)]="selectedSire" [options]="SireList" optionValue="id" optionLabel="name" [filter]="true" filterBy="id" [showClear]="true" placeholder="Select sire">
                                   <ng-template let-sire pTemplate="item">
@@ -154,23 +186,22 @@
                                       </div>
                                   </ng-template>
                               </p-dropdown>
-                              </div> -->
+                              </div>
 
+                              <div class="field mb-4 col-12 md:col-6">
+                                <label for="username2" class="block">Sire(Pejantan):</label>
+                                <input id="username2" type="username" aria-describedby="username2-help" class="ng-invalid ng-dirty" pInputText />
+                                <small id="username2-help" class="p-error block">please enter sire if sire not in sire list</small>
+                            </div>
+                          
 
-                              <!-- <div class="field mb-4 col-12 md:col-6">
-                                <label>Dam(Ibu):</label>
-                              <p-dropdown [(ngModel)]="selectedBreed" [options]="BreedList" optionValue="code" optionLabel="descp" [filter]="true" filterBy="code" [showClear]="true" placeholder="Select breed">
-                                <ng-template let-breed pTemplate="item">
-                                    <div class="flex align-items-center">
-                                       
-                                        <div>{{breed.code}} - {{breed.descp}}</div>
-                                    </div>
-                                </ng-template>
-                            </p-dropdown>
-                            </div> -->
+                              
+                            
 
-      <div class="flex justify-center">
+      <div class="flex justify-center field mb-4 col-12 md:col-6">
         <button pButton pRipple label="Back" (click)="cancel()" icon="pi pi-times" class="mr-2 w-auto p-button-warning"></button> 
     <button pButton pRipple label="Save" (click)="save()" icon="pi pi-file" class="w-auto"></button>
   </div>
+</div>
+</div>
 </div>
