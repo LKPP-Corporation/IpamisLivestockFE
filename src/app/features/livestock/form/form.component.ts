@@ -24,6 +24,10 @@ export class FormComponent implements OnInit {
   sex:any;
   selectedSire:any;
   selectedDam:any;
+  selectedDob:string='';
+
+  //selectedEntCode: string = '';
+//selectedEntDescription: string = '';
 
   selectedBreed:any;
   BreedList:SpeciesInfo[]=[];
@@ -37,6 +41,7 @@ export class FormComponent implements OnInit {
     this.getEnt();
     this.getBreed();
     this.getSire();
+    this.getDam();
 
     this.sex = [
       {name: 'M', value: 'Male'},
@@ -55,20 +60,21 @@ export class FormComponent implements OnInit {
 
   getSire(){
     this.service.getSire().subscribe((data)=>{
-      this.SireList=data;
+      this.SireList=data.content;
+     // console.log( this.SireList + 'sireeee');
     })
   }
 
   getDam(){
     this.service.getDam().subscribe((data)=>{
-      this.DamList=data;
+      this.DamList=data.content;
+     // console.log( this.SireList + 'sireeee');
     })
   }
-
   getEnt(){
     this.service.getEnterpriseList().subscribe((data)=>{
       this.EnterpriseList=data.content;
-      //console.log(this.EnterpriseList.content);
+      console.log(this.EnterpriseList);
     });
   }
 
@@ -92,7 +98,8 @@ export class FormComponent implements OnInit {
     purchasedt: '',
     purchaseamt: 0,
     origin: '',
-    currstatus: ''
+    currstatus: '',
+    sex:'',
   };
 
   parameterTypeId!: number | null;
@@ -192,27 +199,29 @@ export class FormComponent implements OnInit {
   
   save() {
 
+    //this.data1.entercode = this.selectedEnterprise;
+    // console.log(this.selectedEnterprise.descp);
+    // console.log(this.data);
+    // this.lvc.save(this.data).pipe(takeUntil(this.unsubscribe$)).subscribe({
+    //   next: dt => {
+    //     console.log(dt);
+    //     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Saved' });
+    //     this.router.navigate([this.homelink]);
+    //   }, error: err => {
+    //     this.messageService.add({ severity: 'error', summary: 'Error', detail: err });
+    //   }
+    // });
+
     this.data1.entercode = this.selectedEnterprise;
-    console.log(this.selectedEnterprise.descp);
-    console.log(this.data);
-    this.lvc.save(this.data).pipe(takeUntil(this.unsubscribe$)).subscribe({
-      next: dt => {
-        console.log(dt);
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Saved' });
-        this.router.navigate([this.homelink]);
-      }, error: err => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: err });
-      }
-    });
-
-   // this.data1.entercode = this.selectedEnterprise;
     //this.data1.enterdesc = this.selectedEnterprise;
-  //  this.data1.breedcode = this.selectedBreed;
-  //  this.data1.breeddesc = this.selectedBreed;
+    this.data1.breedcode = this.selectedBreed;
+   // this.data1.breeddesc = this.selectedBreed;
 
-    this.data1.enterdesc = this.selectedEnterprise.entercode;
+    //this.data1.dob = this.selectedDob;
+
+    //this.data1.enterdesc = this.selectedEnterprise.entercode;
     console.log(this.data1);
-    this.lvc.save(this.data1).pipe(takeUntil(this.unsubscribe$)).subscribe({
+    this.lvc.saveCeLivestock(this.data1).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: dt => {
         console.log(dt);
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Saved' });

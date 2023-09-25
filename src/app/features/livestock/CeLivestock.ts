@@ -10,6 +10,7 @@ export interface CeLivestock {
   purchasedt:string;
   purchaseamt:number;
   origin:string;
+  sex:string;
 }
 
 
