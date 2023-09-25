@@ -27,11 +27,11 @@ export class LivestockService {
   }
 
   getSire():Observable<any>{
-    return this.http.get<any>(this.apiroot+'/ceLivestock/list');
+    return this.http.get<any>(this.apiroot+'/ceLivestock/listsire');
   }
 
   getDam():Observable<any>{
-    return this.http.get<any>(this.apiroot+'/ceLivestock/list');
+    return this.http.get<any>(this.apiroot+'/ceLivestock/listdam');
   }
 
  
@@ -51,8 +51,8 @@ export class LivestockService {
     return this.http.delete(`${this.apiroot}/ceLivestock/${id}`);
   }
 
-  save(data: Livestockstatus) {
-    return this.http.post(`${this.apiroot}/livestockStatus`, data);
+  save(data: CeLivestock) {
+    return this.http.post(`${this.apiroot}/ceLivestock`, data);
   }
 
   saveCeLivestock(data1: CeLivestock) {

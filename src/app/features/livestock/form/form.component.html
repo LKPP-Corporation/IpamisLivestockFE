@@ -27,7 +27,7 @@
 
         <div class="field mb-4 col-12 md:col-6">
         <label>Livestock Name(Nama Ternakan):</label>
-          <input type="text" pInputText [(ngModel)]="data.id"> 
+          <input type="text" pInputText [(ngModel)]="data1.name"> 
           <span class="ml-2"></span>
         </div>
 
@@ -85,6 +85,8 @@
           </ng-template>
       </p-dropdown>
       </div>
+
+
 
       <!-- hyeweeg -->
 
@@ -164,17 +166,17 @@
 </div>
 
   
-                              <div class="field mb-4 col-12 md:col-6">
-                                <label>Dam(Ibu):</label>
-                              <p-dropdown [(ngModel)]="selectedDam" [options]="DamList" optionValue="id" optionLabel="name" [filter]="true" filterBy="id" [showClear]="true" placeholder="Select dam">
-                                <ng-template let-dam pTemplate="item">
-                                    <div class="flex align-items-center">
-                                        
-                                        <div>{{dam.id}} - {{dam.name}}</div>
-                                    </div>
-                                </ng-template>
-                            </p-dropdown>
-                            </div>
+<div class="field mb-4 col-12 md:col-6">
+  <label>Dam(Ibu):</label>
+<p-dropdown [(ngModel)]="selectedDam" [options]="DamList" optionValue="id" optionLabel="name" [filter]="true" filterBy="id" [showClear]="true" placeholder="Select dam">
+  <ng-template let-dam pTemplate="item">
+      <div class="flex align-items-center">
+          
+          <div>{{dam.id}} - {{dam.name}}</div>
+      </div>
+  </ng-template>
+</p-dropdown>
+</div>
 
                               <div class="field mb-4 col-12 md:col-6">
                                   <label>Sire(Pejantan):</label>
