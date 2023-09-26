@@ -34,6 +34,8 @@ export class FormComponent implements OnInit {
 
   SireList:CeLivestock[]=[];
   DamList:CeLivestock[]=[];
+
+  dropdownOptions: CeLivestock[] = [];
   
   constructor(private service:LivestockService,private router: Router, private route: ActivatedRoute, private lvc: LivestockService,private messageService: MessageService){}
 
@@ -44,13 +46,45 @@ export class FormComponent implements OnInit {
     this.getDam();
 
     this.sex = [
-      {name: 'M', value: 'Male'},
-      {name: 'F', value:'Female'}
+      {code: 'm', name: 'male'},
+      {code: 'f', name:'female'}
   
     
     ];
+
+    // this.service.getSire().subscribe((options)=>{
+    //   this.SireList=[
+    //     {label:'Not Applicable',value:'not applicable'},
+    //     ...options,
+    //   ];
+    // });
+
+        // // Fetch options from the service
+        // this.service.getSire().subscribe((options) => {
+        //   // Add the "Not Applicable" option at the beginning
+        //   this.dropdownOptions = [
+        //     { label: 'Not Applicable', value: 'not_applicable' },
+        //     ...options, // Add the options fetched from the database
+        //   ];
+        // });
     
   }
+
+
+//   onOptionSelect() {
+//     if (this.selectedSire === 'not_applicable') {
+//       // Handle the "Not Applicable" selection here
+//       console.log('Not Applicable selected');
+//     } else {
+//       // Handle other options here
+//       console.log('Selected Option:', this.selectedSire);
+//     }
+//   }
+// }
+
+
+
+  
 
   getBreed(){
     this.service.getBreed().subscribe((data)=>{
@@ -106,90 +140,6 @@ export class FormComponent implements OnInit {
   //router: any;
 
 
-//   DROPDOWN_LIST: enterpriseInfo[] = []; 
-
-
-// CodeNextBtn() {
-//           this.LivestockService.getList(0,this.pageSize).subscribe(
-//             (templateResponse) =>{
-//               this.productData=         //binding database values to productData
-//   templateResponse.productData;
-//               this.totalRecords=templateResponse.totalRecords;
-//               this.referenceShowProgressBar
-
-//               // if templateResponse.productData return type is templateData 
-//               this.DROPDOWN_LIST = templateResponse.productData;
-
-//             },
-//              (error) => {
-//               console.error(error);
-//               this.referenceShowProgressBar = false;
-//             }
-            
-//           );
-
-// } 
-
-
-
-  // constructor(
-  //   private router: Router, private route: ActivatedRoute,
-  //   private messageService: MessageService,
-  //   private lvc: LivestockService,
-  //   public dialogService: DialogService) {
-  //   if (this.route.snapshot.paramMap.get('id') === 'undefined') {
-  //     this.router.navigate([this.homelink]);
-  //   } else {
-  //     console.log(this.route.snapshot.paramMap.get('id'));
-  //     let id = this.route.snapshot.paramMap.get('id');
-  //     if (id === null || id === 'null' || id === 'undefined')
-  //       this.parameterTypeId = null;
-  //     else
-  //       this.parameterTypeId = Number(this.route.snapshot.paramMap.get('id'));
-  //   }
-  // }
-
-  // ngOnDestroy(): void {
-  //   this.unsubscribe$.next();
-  //   this.unsubscribe$.complete();
-  // }
-  // ngOnInit(): void {
-  //   if (this.parameterTypeId != null) {
-  //     console.log(this.parameterTypeId);
-  //     this.lvc.getData(this.parameterTypeId).pipe(takeUntil(this.unsubscribe$)).subscribe({
-  //       next: dt => {
-  //         this.data = dt as Livestock;
-  //       }, error: err => {
-  //         this.messageService.add({ severity: 'error', summary: 'Error', detail: err });
-  //       }
-  //     });
-  //   } else {
-  //     this.data = {
-  //       name: '',
-  //       remark: '',
-  //       price: 0,
-  //       quantity: 0,
-  //     };
-  //   }
-  // }
-
-  // save() {
-  //   console.log(this.data);
-  //   this.lvc.save(this.data).pipe(takeUntil(this.unsubscribe$)).subscribe({
-  //     next: dt => {
-  //       console.log(dt);
-  //       this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Saved' });
-  //       this.router.navigate([this.homelink]);
-  //     }, error: err => {
-  //       this.messageService.add({ severity: 'error', summary: 'Error', detail: err });
-  //     }
-  //   });
-  // }
-
-  // cancel() {
-  //   this.router.navigate([this.homelink]);
-  // }
-
 
 
   cancel() {
@@ -215,6 +165,7 @@ export class FormComponent implements OnInit {
     this.data1.entercode = this.selectedEnterprise;
     //this.data1.enterdesc = this.selectedEnterprise;
     this.data1.breedcode = this.selectedBreed;
+    this.data1.sex=this.selectedSex;
    // this.data1.breeddesc = this.selectedBreed;
 
     //this.data1.dob = this.selectedDob;

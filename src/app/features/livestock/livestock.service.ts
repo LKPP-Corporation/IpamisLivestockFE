@@ -34,6 +34,13 @@ export class LivestockService {
     return this.http.get<any>(this.apiroot+'/ceLivestock/listdam');
   }
 
+
+  //nak try utk list option not applicable
+  // getOptions(): Observable<any[]> {
+  //   // Fetch options from your database here
+  //   return this.http.get<any[]>('/api/options');
+  // }
+
  
   getList(params: any) {
     const requestParams = {

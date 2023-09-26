@@ -64,11 +64,11 @@
 
           <div class="field mb-4 col-12 md:col-6">
             <label>Sex(Jantina):</label>
-          <p-dropdown [(ngModel)]="selectedSex" [options]="sex" optionValue="value" optionLabel="value" [filter]="true" filterBy="value" [showClear]="true" placeholder="Select sex">
+          <p-dropdown [(ngModel)]="selectedSex" [options]="sex" optionValue="name" optionLabel="name" [filter]="true" filterBy="code" [showClear]="true" placeholder="Select sex">
             <ng-template let-sex pTemplate="item">
                 <div class="flex align-items-center">
                     <!-- <img src="assets/demo/images/flag/flag_placeholder.png" [class]="'mr-2 flag flag-' + fields.id" style="width:18px"/>-->
-                    <div>{{sex.name}} - {{sex.value}}</div>
+                    <div>{{sex.code}} - {{sex.name}}</div>
                 </div>
             </ng-template>
         </p-dropdown>
@@ -159,11 +159,11 @@
   <div class="grid formgrid p-fluid">
 
    
-<div class="field mb-4 col-12 md:col-6">
+<!-- <div class="field mb-4 col-12 md:col-6">
     <label for="username2" class="block">Dam(Ibu):</label>
     <input id="username2" type="username" aria-describedby="username2-help" class="ng-invalid ng-dirty" pInputText />
     <small id="username2-help" class="p-error block">please enter dam if dam not in dam list</small>
-</div>
+</div> -->
 
   
 <div class="field mb-4 col-12 md:col-6">
@@ -190,11 +190,11 @@
                               </p-dropdown>
                               </div>
 
-                              <div class="field mb-4 col-12 md:col-6">
+                              <!-- <div class="field mb-4 col-12 md:col-6">
                                 <label for="username2" class="block">Sire(Pejantan):</label>
                                 <input id="username2" type="username" aria-describedby="username2-help" class="ng-invalid ng-dirty" pInputText />
                                 <small id="username2-help" class="p-error block">please enter sire if sire not in sire list</small>
-                            </div>
+                            </div> -->
                           
 
                               
