@@ -29,7 +29,7 @@ export class FormComponent implements OnDestroy, OnInit {
   constructor(
     private router: Router, private route: ActivatedRoute,
     private messageService: MessageService,
-    private svc: LivestockService,
+    private svc: SoilService,
     public dialogService: DialogService) {
     if (this.route.snapshot.paramMap.get('id') === 'undefined') {
       this.router.navigate([this.homelink]);
