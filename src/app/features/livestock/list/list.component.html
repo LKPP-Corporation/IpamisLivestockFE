@@ -35,8 +35,9 @@
            <td>{{ data.id }}</td>
            <td>{{ data.name }}</td>
            <td>
-             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editData(data)"></button>
-             <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteData($event,data)"></button>
+            <button pButton pRipple icon="pi pi-file-edit" class="p-button-rounded p-button-help mr-2" (click)="changeStatusData(data)"></button>
+            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editData(data)"></button>
+            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteData($event,data)"></button>
          </td>
        </tr>
    </ng-template>

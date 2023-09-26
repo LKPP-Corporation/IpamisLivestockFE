@@ -1,0 +1,51 @@
+<div class="surface-ground">
+  <div class="text-900 font-medium text-xl mb-3">Change Livestock Status</div>
+  <div class="surface-card p-4 shadow-2 border-round p-fluid">
+      <div class="grid formgrid p-fluid">
+        <div class="field mb-4 col-12 md:col-6">
+          <label for="id" class="font-medium text-900">Tag ID</label>
+          <input id="id" type="text" [(ngModel)]="data.regid" pInputText readonly>
+        </div>
+
+        <div class="field mb-4 col-12 md:col-6">
+          <label>Status:</label>
+        <p-dropdown [(ngModel)]="data.currstatus" [options]="status" optionValue="value" optionLabel="value" [filter]="true" filterBy="value" [showClear]="true" placeholder="Select status">
+      </p-dropdown>
+      </div>
+
+        <div class="field mb-4 col-12 md:col-6">
+          <label for="sname" class="font-medium text-900">Date</label>
+          <input id="sname" type="date" [(ngModel)]="data.transdate" pInputText>
+        </div>
+
+        <div class="field mb-4 col-12 md:col-6">
+          <label for="sname" class="font-medium text-900">Reason</label>
+          <input id="sname" type="text" [(ngModel)]="data.remark" pInputText>
+        </div>
+
+        <div class="field mb-4 col-12 md:col-6">
+          <label for="sreceiveamt" class="font-medium text-900">Received Amount (RM)</label>
+          <p-inputNumber placeholder="Input any number" [minFractionDigits]="1" [maxFractionDigits]="3"></p-inputNumber>
+        </div>
+
+        <div class="field mb-4 col-12 md:col-6">
+          <label for="sbuyer" class="font-medium text-900">Buyer</label>
+          <p-dropdown [(ngModel)]="selectedBuyer" [options]="BuyerList" optionValue="code" optionLabel="descp" [filter]="true" filterBy="code" [showClear]="true" placeholder="Select breed">
+            <ng-template let-buyer pTemplate="item">
+                <div class="flex align-items-center">
+                    <!-- <img src="assets/demo/images/flag/flag_placeholder.png" [class]="'mr-2 flag flag-' + fields.id" style="width:18px"/>-->
+                    <div>{{buyer.code}} - {{buyer.descp}}</div>
+                </div>
+            </ng-template>
+        </p-dropdown>
+        </div>
+
+
+        <div class="surface-border border-top-1 opacity-50 mb-4 col-12"></div>
+      </div>
+
+      <div class="flex justify-end">
+        <button pButton pRipple label="Back" icon="pi pi-times" class="mr-2 w-auto p-button-warning"></button>
+      <button pButton pRipple label="Save" icon="pi pi-file" class="w-auto"></button>
+  </div>
+</div>

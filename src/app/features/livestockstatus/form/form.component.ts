@@ -1,73 +1,93 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService } from 'primeng/dynamicdialog';
 import { Subject, takeUntil } from 'rxjs';
-import { Soil } from '../soil';
+import { Livestockstatus } from '../livestockstatus';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { SoilService } from '../soil.service';
-import { LivestockService } from '../../livestock/livestock.service';
+import { LivestockstatusService } from '../livestockstatus.service';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'], providers: [DialogService]
 })
-export class FormComponent implements OnDestroy, OnInit {
-  ref!: DynamicDialogRef;
+
+export class FormComponent  implements OnDestroy, OnInit{
+
   unsubscribe$: Subject<void> = new Subject<void>();
-  homelink = '/soil/list';
-  data: Soil = {
-    name: '',
-    remark: '',
-    price: 0,
-    quantity: 0,
+  homelink = '/livestock/list';
+  data: Livestockstatus = {
+    id: '',
+    regid:''
   };
 
-  parameterTypeId!: number | null;
+  selectedStatus:any;
+  status:any;
 
+  selectedBuyer:any;
+  BuyerList:BuyerInfo[]=[];
+
+  parameterTypeId!: string | null;
 
   constructor(
     private router: Router, private route: ActivatedRoute,
     private messageService: MessageService,
-    private svc: LivestockService,
+    private svc: LivestockstatusService,
     public dialogService: DialogService) {
     if (this.route.snapshot.paramMap.get('id') === 'undefined') {
       this.router.navigate([this.homelink]);
     } else {
       console.log(this.route.snapshot.paramMap.get('id'));
-      let id = this.route.snapshot.paramMap.get('id');
-      if (id === null || id === 'null' || id === 'undefined')
+      let regid = this.route.snapshot.paramMap.get('id');
+      if (regid === null || regid === 'null' || regid === 'undefined')
         this.parameterTypeId = null;
       else
-        this.parameterTypeId = Number(this.route.snapshot.paramMap.get('id'));
+        this.parameterTypeId = this.route.snapshot.paramMap.get('id');
     }
   }
+
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }
+
   ngOnInit(): void {
+
+    this.getBuyer();
+
+    this.status = [
+      {name: 'Active', value: 'Active'},
+      {name: 'Death', value:'Death'}
+
+    ];
+
+
     if (this.parameterTypeId != null) {
       console.log(this.parameterTypeId);
       this.svc.getData(this.parameterTypeId).pipe(takeUntil(this.unsubscribe$)).subscribe({
         next: dt => {
-          this.data = dt as Soil;
+          console.log(dt);
+          this.data = dt as Livestockstatus;
         }, error: err => {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: err });
         }
       });
     } else {
       this.data = {
-        name: '',
-        remark: '',
-        price: 0,
-        quantity: 0,
+        regid: ''
       };
     }
   }
 
-  save() {
+  getBuyer(){
+    this.svc.getBuyer().subscribe((data)=>{
+      this.BuyerList=data;
+    });
+  }
+
+
+ /* save() {
     console.log(this.data);
     this.svc.save(this.data).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: dt => {
@@ -78,7 +98,7 @@ export class FormComponent implements OnDestroy, OnInit {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: err });
       }
     });
-  }
+  }*/
 
   cancel() {
     this.router.navigate([this.homelink]);

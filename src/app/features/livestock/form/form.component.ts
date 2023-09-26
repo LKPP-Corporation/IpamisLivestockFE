@@ -24,7 +24,7 @@ export class FormComponent implements OnInit {
 
   selectedBreed:any;
   BreedList:SpeciesInfo[]=[];
-  
+
   constructor(private service:LivestockService){}
 
   ngOnInit(): void {
@@ -34,10 +34,10 @@ export class FormComponent implements OnInit {
     this.sex = [
       {name: 'M', value: 'Male'},
       {name: 'F', value:'Female'}
-  
-    
+
+
     ];
-    
+
   }
 
   getBreed(){
@@ -67,7 +67,7 @@ export class FormComponent implements OnInit {
   router: any;
 
 
-//   DROPDOWN_LIST: enterpriseInfo[] = []; 
+//   DROPDOWN_LIST: enterpriseInfo[] = [];
 
 
 // CodeNextBtn() {
@@ -78,7 +78,7 @@ export class FormComponent implements OnInit {
 //               this.totalRecords=templateResponse.totalRecords;
 //               this.referenceShowProgressBar
 
-//               // if templateResponse.productData return type is templateData 
+//               // if templateResponse.productData return type is templateData
 //               this.DROPDOWN_LIST = templateResponse.productData;
 
 //             },
@@ -86,10 +86,10 @@ export class FormComponent implements OnInit {
 //               console.error(error);
 //               this.referenceShowProgressBar = false;
 //             }
-            
+
 //           );
 
-// } 
+// }
 
 
 
@@ -170,5 +170,5 @@ export class FormComponent implements OnInit {
   cancel() {
     this.router.navigate([this.homelink]);
   }
-  
+
 }

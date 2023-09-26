@@ -5,6 +5,9 @@ import { Table } from 'primeng/table';
 import { Subject, takeUntil } from 'rxjs';
 import { LivestockService } from '../livestock.service';
 import { Livestock } from '../livestock';
+import { Livestockstatus } from '../../livestockstatus/livestockstatus';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+
 
 @Component({
   selector: 'app-list',
@@ -23,6 +26,8 @@ export class ListComponent implements OnInit, OnDestroy {
 
   loading: boolean = true;
 
+  ref: DynamicDialogRef | undefined;
+
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
@@ -36,6 +41,10 @@ export class ListComponent implements OnInit, OnDestroy {
     this.router.navigate(['livestock/form', { id: s != null ? s.id : null }]);
   }
 
+  changeStatusData(s?: Livestockstatus) {
+    this.router.navigate(['/livestockstatus/form', { id: s != null ? s.id : null }]);
+  }
+
   deleteData(event: Event, s: Livestock) {
     console.log(s);
     console.log(event);
@@ -45,7 +54,7 @@ export class ListComponent implements OnInit, OnDestroy {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.lvc.delete(s.id!).pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
-          this.reloadList({ first: 0, rows: 10, sortField: 'code', sortOrder: 1, globalFilter: '' });
+          this.reloadList({ first: 0, rows: 10, sortField: 'id', sortOrder: 1, globalFilter: '' });
           this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Deleted' });
         });
       },
