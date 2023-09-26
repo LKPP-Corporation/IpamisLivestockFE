@@ -5,6 +5,7 @@ import { Livestockstatus } from '../livestockstatus';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { LivestockstatusService } from '../livestockstatus.service';
+import { Buyerinfo } from '../../buyerinfo/buyerinfo';
 
 @Component({
   selector: 'app-form',
@@ -25,7 +26,7 @@ export class FormComponent  implements OnDestroy, OnInit{
   status:any;
 
   selectedBuyer:any;
-  BuyerList:BuyerInfo[]=[];
+  BuyerList:Buyerinfo[]=[];
 
   parameterTypeId!: string | null;
 
