@@ -5,6 +5,9 @@ import { Table } from 'primeng/table';
 import { Subject, takeUntil } from 'rxjs';
 import { LivestockService } from '../livestock.service';
 import { Livestock } from '../livestock';
+import { Livestockstatus } from '../../livestockstatus/livestockstatus';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+
 
 @Component({
   selector: 'app-list',
@@ -23,6 +26,8 @@ export class ListComponent implements OnInit, OnDestroy {
 
   loading: boolean = true;
 
+  ref: DynamicDialogRef | undefined;
+
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
@@ -36,8 +41,8 @@ export class ListComponent implements OnInit, OnDestroy {
     this.router.navigate(['livestock/form', { id: s != null ? s.id : null }]);
   }
 
-  changeStatusData(s?: Livestock) {
-    this.router.navigate(['livestock/form', { id: s != null ? s.id : null }]);
+  changeStatusData(s?: Livestockstatus) {
+    this.router.navigate(['/livestockstatus/form', { id: s != null ? s.id : null }]);
   }
 
   deleteData(event: Event, s: Livestock) {

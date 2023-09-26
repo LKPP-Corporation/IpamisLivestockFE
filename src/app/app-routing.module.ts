@@ -19,6 +19,7 @@ const routes: Routes = [
       },
       { path: 'soil', loadChildren: () => import('./features/soil/soil.module').then(m => m.SoilModule) },
       { path: 'livestockgroup', loadChildren: () => import('./features/livestockgroup/livestockgroup.module').then(m => m.LivestockgroupModule) },
+      { path: 'livestockstatus', loadChildren: () => import('./features/livestockstatus/livestockstatus.module').then(m => m.LivestockstatusModule) },
 
       { path: 'user', loadChildren: () => import('./config/user/user.module').then(m => m.UserModule) },
       { path: 'menu', loadChildren: () => import('./config/menu/menu.module').then(m => m.MenuModule) },
