@@ -5,6 +5,7 @@ import { Soil } from '../soil';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { SoilService } from '../soil.service';
+import { LivestockService } from '../../livestock/livestock.service';
 
 @Component({
   selector: 'app-form',
@@ -25,11 +26,10 @@ export class FormComponent implements OnDestroy, OnInit {
   parameterTypeId!: number | null;
 
 
-
   constructor(
     private router: Router, private route: ActivatedRoute,
     private messageService: MessageService,
-    private svc: SoilService,
+    private svc: LivestockService,
     public dialogService: DialogService) {
     if (this.route.snapshot.paramMap.get('id') === 'undefined') {
       this.router.navigate([this.homelink]);
