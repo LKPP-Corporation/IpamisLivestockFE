@@ -37,6 +37,7 @@
             <span class="ml-2"></span>
           </div>
          
+          
 
           <!-- <div class="field mb-4 col-12 md:col-6">
             <label for="livestockname">Livestock Name(Nama Ternakan): </label><br>
@@ -55,12 +56,19 @@
 
           </div> -->
 
-          <div class="field mb-4 col-12 md:col-6">
+          <!-- <div class="field mb-4 col-12 md:col-6">
           <label for="dob">Date Of Birth (Tarikh Lahir): </label><br>
-          <!-- <input type="date" id="dob" name="dob"> -->               
+          <input type="date" id="dob" name="dob">            
                 <p-calendar inputId="basic" [(ngModel)]="data1.dob"></p-calendar>
 
-          </div>
+          </div> -->
+
+          <div class="field mb-4 col-12 md:col-6">
+            <label for="dob">Date Of Birth (Tarikh Lahir): </label><br>
+            <input type="date" id="dob" pInputText [(ngModel)]="data1.dob" showIcon="true" > 
+					</div>
+
+          
 
           <div class="field mb-4 col-12 md:col-6">
             <label>Sex(Jantina):</label>
@@ -108,20 +116,11 @@
                     <span class="ml-2"></span>
                     </div>
 
-                    <!-- <div class="field mb-4 col-12 md:col-6">
-                      <label for="date2">Date Deceased (Tarikh Kematian): </label><br>
-                      <p-calendar inputId="basic"></p-calendar>
-                      </div> -->
-                      
-                  <!-- <div class="field mb-4 col-12 md:col-6">
-                    <label for="cod">Cause Of Death(Punca Kematian): </label><br>
-                    <input type="text" pInputText>
-                    <span class="ml-2"></span>
-                    </div> -->
+                  
 
                     <div class="field mb-4 col-12 md:col-6">
                       <label for="date3">Date Purchased (Tarikh Pembelian): </label><br>
-                      <p-calendar inputId="basic" [(ngModel)]="data1.purchasedt"></p-calendar>
+                      <input type="date" id="pdate" pInputText [(ngModel)]="data1.purchasedt" showIcon="true" > 
                       </div>
 
                       <div class="field mb-4 col-12 md:col-6">
