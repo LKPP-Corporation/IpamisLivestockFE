@@ -30,14 +30,13 @@
 
         <div class="field mb-4 col-12 md:col-6">
           <label for="sbuyer" class="font-medium text-900">Buyer</label>
-          <p-dropdown [(ngModel)]="selectedBuyer" [options]="BuyerList" optionValue="code" optionLabel="descp" [filter]="true" filterBy="code" [showClear]="true" placeholder="Select breed">
+          <p-dropdown [(ngModel)]="selectedBuyer" [options]="BuyerList" optionValue="code" optionLabel="companyname" [filter]="true" filterBy="code" [showClear]="true" placeholder="Select Buyer">
             <ng-template let-buyer pTemplate="item">
                 <div class="flex align-items-center">
-                    <!-- <img src="assets/demo/images/flag/flag_placeholder.png" [class]="'mr-2 flag flag-' + fields.id" style="width:18px"/>-->
-                    <div>{{buyer.code}} - {{buyer.descp}}</div>
+                    <div>{{buyer.code}} - {{buyer.companyname}}</div>
                 </div>
             </ng-template>
-        </p-dropdown>
+          </p-dropdown>
         </div>
 
 
@@ -45,7 +44,7 @@
       </div>
 
       <div class="flex justify-end">
-        <button pButton pRipple label="Back" icon="pi pi-times" class="mr-2 w-auto p-button-warning"></button>
-      <button pButton pRipple label="Save" icon="pi pi-file" class="w-auto"></button>
+        <button pButton pRipple label="Back" (click)="cancel()" icon="pi pi-times" class="mr-2 w-auto p-button-warning"></button>
+        <button pButton pRipple label="Save" (click)="save()" icon="pi pi-file" class="w-auto"></button>
   </div>
 </div>

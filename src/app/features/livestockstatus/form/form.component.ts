@@ -22,6 +22,11 @@ export class FormComponent  implements OnDestroy, OnInit{
     regid:''
   };
 
+  buyer: Buyerinfo = {
+    code: '',
+    companyname:''
+  };
+
   selectedStatus:any;
   status:any;
 
@@ -83,12 +88,13 @@ export class FormComponent  implements OnDestroy, OnInit{
 
   getBuyer(){
     this.svc.getBuyer().subscribe((data)=>{
-      this.BuyerList=data;
+      this.BuyerList=data.content;
+      console.log( this.BuyerList + 'sireeee');
     });
   }
 
 
- /* save() {
+  save() {
     console.log(this.data);
     this.svc.save(this.data).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: dt => {
@@ -99,7 +105,7 @@ export class FormComponent  implements OnDestroy, OnInit{
         this.messageService.add({ severity: 'error', summary: 'Error', detail: err });
       }
     });
-  }*/
+  }
 
   cancel() {
     this.router.navigate([this.homelink]);
