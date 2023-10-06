@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, map, takeUntil } from 'rxjs';
 import { Livestockstatus } from '../livestockstatus';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -19,7 +19,7 @@ export class FormComponent  implements OnDestroy, OnInit{
   homelink = '/livestock/list';
   data: Livestockstatus = {
     id: '',
-    regid:''
+    regid:'',
   };
 
   buyer: Buyerinfo = {
@@ -31,7 +31,7 @@ export class FormComponent  implements OnDestroy, OnInit{
   status:any;
 
   selectedBuyer:any;
-  BuyerList:Buyerinfo[]=[];
+  BuyerList$!:Observable<Buyerinfo[]>;
 
   parameterTypeId!: string | null;
 
@@ -59,8 +59,10 @@ export class FormComponent  implements OnDestroy, OnInit{
   }
 
   ngOnInit(): void {
-
-    this.getBuyer();
+    this.BuyerList$=this.svc.getBuyer().pipe(
+      map(dt=>dt.content)
+    );
+   // this.getBuyer();
 
     this.status = [
       {name: 'Active', value: 'Active'},
@@ -86,15 +88,18 @@ export class FormComponent  implements OnDestroy, OnInit{
     }
   }
 
-  getBuyer(){
-    this.svc.getBuyer().subscribe((data)=>{
-      this.BuyerList=data.content;
-      console.log( this.BuyerList + 'sireeee');
-    });
-  }
+  // getBuyer(){
+  //   this.svc.getBuyer().subscribe((data)=>{
+  //     this.BuyerList=data.content;
+  //     console.log( this.BuyerList + 'sireeee');
+  //   });
+  // }
 
 
   save() {
+    //this.data.buyercode = this.selectedBuyer;
+    //this.data.chgdate = new Date;
+
     console.log(this.data);
     this.svc.save(this.data).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: dt => {

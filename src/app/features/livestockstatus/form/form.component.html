@@ -9,28 +9,30 @@
 
         <div class="field mb-4 col-12 md:col-6">
           <label>Status:</label>
-        <p-dropdown [(ngModel)]="data.currstatus" [options]="status" optionValue="value" optionLabel="value" [filter]="true" filterBy="value" [showClear]="true" placeholder="Select status">
+        <p-dropdown [(ngModel)]="data.status" [options]="status" optionValue="value" optionLabel="value" [filter]="true" filterBy="value" [showClear]="true" placeholder="Select status">
       </p-dropdown>
       </div>
 
         <div class="field mb-4 col-12 md:col-6">
-          <label for="sname" class="font-medium text-900">Date</label>
-          <input id="sname" type="date" [(ngModel)]="data.transdate" pInputText>
+          <label for="transdate" class="font-medium text-900">Date</label>
+          <input id="transdate" type="date" [(ngModel)]="data.transdate" pInputText>
         </div>
 
         <div class="field mb-4 col-12 md:col-6">
-          <label for="sname" class="font-medium text-900">Reason</label>
-          <input id="sname" type="text" [(ngModel)]="data.remark" pInputText>
+          <label for="remark" class="font-medium text-900">Reason</label>
+          <input id="remark" type="text" [(ngModel)]="data.remark" pInputText>
         </div>
 
         <div class="field mb-4 col-12 md:col-6">
-          <label for="sreceiveamt" class="font-medium text-900">Received Amount (RM)</label>
-          <p-inputNumber placeholder="Input any number" [minFractionDigits]="1" [maxFractionDigits]="3"></p-inputNumber>
+          <label for="soldamt" class="font-medium text-900">Received Amount (RM)</label>
+          <!--p-inputNumber placeholder="Input any number" [minFractionDigits]="1" [maxFractionDigits]="3"></p-inputNumber-->
+
+          <input id="soldamt" type="text" [(ngModel)]="data.soldamt" pInputText>
         </div>
 
         <div class="field mb-4 col-12 md:col-6">
           <label for="sbuyer" class="font-medium text-900">Buyer</label>
-          <p-dropdown [(ngModel)]="selectedBuyer" [options]="BuyerList" optionValue="code" optionLabel="companyname" [filter]="true" filterBy="code" [showClear]="true" placeholder="Select Buyer">
+          <p-dropdown [(ngModel)]="data.buyer" [options]="(BuyerList$ | async)!" optionLabel="companyname" placeholder="Select Buyer">
             <ng-template let-buyer pTemplate="item">
                 <div class="flex align-items-center">
                     <div>{{buyer.code}} - {{buyer.companyname}}</div>

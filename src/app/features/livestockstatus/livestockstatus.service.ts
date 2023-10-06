@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { Observable } from 'rxjs';
 import { Livestockstatus } from './livestockstatus';
+import { Buyerinfo } from '../buyerinfo/buyerinfo';
 
 @Injectable({
   providedIn: 'root'
