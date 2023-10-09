@@ -56,12 +56,7 @@
 
           </div> -->
 
-          <!-- <div class="field mb-4 col-12 md:col-6">
-          <label for="dob">Date Of Birth (Tarikh Lahir): </label><br>
-          <input type="date" id="dob" name="dob">            
-                <p-calendar inputId="basic" [(ngModel)]="data1.dob"></p-calendar>
-
-          </div> -->
+         
 
           <div class="field mb-4 col-12 md:col-6">
             <label for="dob">Date Of Birth (Tarikh Lahir): </label><br>
@@ -123,11 +118,17 @@
                       <input type="date" id="pdate" pInputText [(ngModel)]="data1.purchasedt" showIcon="true" > 
                       </div>
 
-                      <div class="field mb-4 col-12 md:col-6">
+                      <!-- <div class="field mb-4 col-12 md:col-6">
                         <label for="pp">Price Paid(Harga Dibayar): </label><br>
                         <input type="text" pInputText [(ngModel)]="data1.purchaseamt"> 
                         <span class="ml-2"></span>
-                        </div>
+                        </div>  -->
+
+                      <div class="field mb-4 col-12 md:col-6">
+                          <label for="minmaxfraction">Price Paid(Harga Dibayar):</label>
+                          <p-inputNumber [(ngModel)]="data1.purchaseamt" inputId="minmaxfraction" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="5">
+                          </p-inputNumber>
+                      </div> 
 
 
        </div>
