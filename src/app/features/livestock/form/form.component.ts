@@ -16,7 +16,9 @@ import { CeLivestock } from '../CeLivestock';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'], providers: [DialogService]
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnDestroy, OnInit {
+
+  
 
   EnterpriseList: EnterpriseInfo[] = [];
   selectedEnterprise:any;
@@ -37,7 +39,20 @@ export class FormComponent implements OnInit {
 
   dropdownOptions: CeLivestock[] = [];
   
-  constructor(private service:LivestockService,private router: Router, private route: ActivatedRoute, private lvc: LivestockService,private messageService: MessageService){}
+  constructor(private service:LivestockService,private router: Router, private route: ActivatedRoute, private lvc: LivestockService,private messageService: MessageService)
+  {
+    if (this.route.snapshot.paramMap.get('id') === 'undefined') {
+      this.router.navigate([this.homelink]);
+    } else {
+      console.log(this.route.snapshot.paramMap.get('id'));
+      let id = this.route.snapshot.paramMap.get('id');
+      if (id === null || id === 'null' || id === 'undefined')
+        this.parameterTypeId = null;
+      else
+        this.parameterTypeId = Number(this.route.snapshot.paramMap.get('id'));
+    }
+
+  }
 
   ngOnInit(): void {
     this.getEnt();
@@ -51,6 +66,31 @@ export class FormComponent implements OnInit {
   
     
     ];
+
+    if (this.parameterTypeId != null) {
+      console.log(this.parameterTypeId);
+      this.lvc.getData(this.parameterTypeId).pipe(takeUntil(this.unsubscribe$)).subscribe({
+        next: dt => {
+          this.data1 = dt as CeLivestock;
+        }, error: err => {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: err });
+        }
+      });
+    } else {
+      this.data1 = {
+        name: '',
+        entercode: 0,
+        breedcode: 0,
+        enterdesc: '',
+        breeddesc: '',
+        dob: '',
+        purchasedt: '',
+        purchaseamt: 0,
+        origin: '',
+        currstatus: '',
+        sex:'',
+      };
+    }
 
     // this.service.getSire().subscribe((options)=>{
     //   this.SireList=[
@@ -68,6 +108,11 @@ export class FormComponent implements OnInit {
         //   ];
         // });
     
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
 
