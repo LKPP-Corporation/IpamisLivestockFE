@@ -7,6 +7,7 @@ import { LivestockService } from '../livestock.service';
 import { Livestock } from '../livestock';
 import { Livestockstatus } from '../../livestockstatus/livestockstatus';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { CeLivestock } from '../CeLivestock';
 
 
 @Component({
@@ -37,7 +38,7 @@ export class ListComponent implements OnInit, OnDestroy {
     //throw new Error('Method not implemented.');
   }
 
-  editData(s?: Livestock) {
+  editData(s?: CeLivestock) {
     this.router.navigate(['livestock/form', { id: s != null ? s.id : null }]);
   }
 

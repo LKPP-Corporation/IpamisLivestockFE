@@ -61,8 +61,8 @@ export class FormComponent implements OnDestroy, OnInit {
     this.getDam();
 
     this.sex = [
-      {code: 'm', name: 'male'},
-      {code: 'f', name:'female'}
+      {code: 'm', name: 'jantan'},
+      {code: 'f', name:'betina'}
   
     
     ];
