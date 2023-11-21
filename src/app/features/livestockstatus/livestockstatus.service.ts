@@ -14,7 +14,7 @@ export class LivestockstatusService {
   constructor(protected http: HttpClient) {
     this.apiroot = environment.apiUrl;
   }
-
+/*
   getData(regid: string) {
     return this.http.get(`${this.apiroot}/ceLivestockstatus/regid/${regid}`);
   }
@@ -30,6 +30,22 @@ export class LivestockstatusService {
   save(data: Livestockstatus) {
     return this.http.post(`${this.apiroot}/ceLivestockstatus`, data);
   }
+*/
 
+getData(regid: string) {
+  return this.http.get(`${this.apiroot}/ceLivestockstatus/regid/${regid}`);
+}
+
+getBuyer():Observable<any>{
+  return this.http.get<any>(this.apiroot+'/buyerInfo/listbuyer');
+}
+
+delete(id: string) {
+  return this.http.delete(`${this.apiroot}/ceLivestockstatus/id/${id}`);
+}
+
+save(data: Livestockstatus) {
+  return this.http.post(`${this.apiroot}/ceLivestockstatus`, data);
+}
 
 }

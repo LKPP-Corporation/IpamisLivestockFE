@@ -43,6 +43,7 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   changeStatusData(s?: Livestockstatus) {
+    //this.router.navigate(['/livestockstatus/form', { id: s != null ? s.id : null }]);
     this.router.navigate(['/livestockstatus/form', { id: s != null ? s.id : null }]);
   }
 

@@ -27,6 +27,8 @@
        <tr>
            <th>ID</th>
            <th>Name</th>
+           <th>Species</th>
+           <th>Breed</th>
            <th></th>
        </tr>
    </ng-template>
@@ -34,8 +36,10 @@
        <tr>
            <td>{{ data.code }}</td>
            <td>{{ data.descp }}</td>
+           <td><button pButton pRipple icon="pi pi-file alternate outline" class="p-button-rounded p-button-success" ></button></td><!--(click)="viewData($event,data)"-->
+           <td><button pButton pRipple icon="pi pi-file alternate outline" class="p-button-rounded p-button-loading-icon" (click)="deleteData($event,data)"></button></td>
+
            <td>
-             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editData(data)"></button>
              <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteData($event,data)"></button>
          </td>
        </tr>

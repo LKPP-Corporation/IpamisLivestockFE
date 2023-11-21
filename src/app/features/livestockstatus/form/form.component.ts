@@ -18,8 +18,12 @@ export class FormComponent  implements OnDestroy, OnInit{
   unsubscribe$: Subject<void> = new Subject<void>();
   homelink = '/livestock/list';
   data: Livestockstatus = {
-    id: '',
+    id: null,
     regid:'',
+    status:'',
+    remark:'',
+    soldamt:0.00,
+    buyer:null
   };
 
   buyer: Buyerinfo = {
@@ -66,26 +70,43 @@ export class FormComponent  implements OnDestroy, OnInit{
 
     this.status = [
       {name: 'Active', value: 'Active'},
-      {name: 'Death', value:'Death'}
+      {name: 'Death', value:'Death'},
+      {name: 'Calves', value:'Calves'}
 
     ];
 
 
-    if (this.parameterTypeId != null) {
-      console.log(this.parameterTypeId);
-      this.svc.getData(this.parameterTypeId).pipe(takeUntil(this.unsubscribe$)).subscribe({
-        next: dt => {
-          console.log(dt);
-          this.data = dt as Livestockstatus;
-        }, error: err => {
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: err });
-        }
-      });
-    } else {
-      this.data = {
-        regid: ''
-      };
-    }
+    this.data = {
+      id: null,
+      regid:this.parameterTypeId!,
+      status:'',
+      remark:'',
+      soldamt:0.00,
+      buyer:null
+    };
+
+    // if (this.parameterTypeId != null) {
+    //   console.log('parameterTypeId',this.parameterTypeId);
+    //   this.svc.getData(this.parameterTypeId).pipe(takeUntil(this.unsubscribe$)).subscribe({
+    //     next: dt => {
+    //       console.log('Livestockstatus',dt);
+    //       this.data = dt as Livestockstatus;
+    //       this.data.regid!=this.parameterTypeId;
+    //     }, error: err => {
+    //       this.data.regid=this.parameterTypeId!;
+    //       this.messageService.add({ severity: 'error', summary: 'Error', detail: err });
+    //     }
+    //   });
+    // } else {
+    //   this.data = {
+    //     id: null,
+    //     regid:this.parameterTypeId!,
+    //     status:'',
+    //     remark:'',
+    //     soldamt:0.00,
+    //     buyer:null
+    //   };
+    // }
   }
 
   // getBuyer(){
@@ -104,7 +125,7 @@ export class FormComponent  implements OnDestroy, OnInit{
     this.svc.save(this.data).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: dt => {
         console.log(dt);
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Saved' });
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Data Successfully Saved!!' });
         this.router.navigate([this.homelink]);
       }, error: err => {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: err });

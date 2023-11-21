@@ -1,12 +1,12 @@
 import { Buyerinfo } from "../buyerinfo/buyerinfo";
 
 export interface Livestockstatus {
-  id?: string;
+  id?: string|null;
   regid?:string;
   remark?:string;
   status?:string;
   transdate?:Date;
-  buyer?:Buyerinfo;
+  buyer?:Buyerinfo|null;
   chgdate?:Date;
   soldamt?:number;
 
