@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
-import { Soil } from './soil';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SoilService {
+
+export class PhysicalReportService {
 
   apiroot = '';
 
@@ -24,16 +24,10 @@ export class SoilService {
       }
     };
     console.log(requestParams);
-    return this.http.get(`${this.apiroot}/soil`, requestParams);
-  }
-  delete(id: number) {
-    return this.http.delete(`${this.apiroot}/soil/${id}`);
+    return this.http.get(this.apiroot+'/ceLivestock/list', requestParams);
   }
 
-  save(data: Soil) {
-    return this.http.post(`${this.apiroot}/soil`, data);
-  }
   getData(id: number) {
-    return this.http.get(`${this.apiroot}/soil/${id}`);
+    return this.http.get(`${this.apiroot}/ceLivestock/${id}`);
   }
 }

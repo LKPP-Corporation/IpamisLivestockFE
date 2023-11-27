@@ -1,0 +1,44 @@
+<div class="card">
+  <p-table
+  #dt
+ [value]="listData"
+ [lazy]="true"
+ (onLazyLoad)="reloadList($event)"
+ [paginator]="true"
+ [rows]="10"
+ sortMode="single"
+ sortField="id"
+ [totalRecords]="totalRecords"
+ [loading]="loading"
+ >
+
+
+<ng-template pTemplate="header">
+    <tr>
+        <th>Tag ID</th>
+        <th>DOB</th>
+        <th>Sex</th>
+        <th>Type</th>
+        <th>Breed</th>
+        <th>Status</th>
+        <th>Sire</th>
+        <th>Dom</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-data>
+    <tr>
+        <td>{{ data.id }}</td>
+        <td>{{ data.name }}</td>
+        <td>{{ data.sex }}</td>
+        <td>{{ data.entercode }}</td>
+        <td>{{ data.breedcode }}</td>
+        <td>{{ data.currstatus }}</td>
+        <td>{{ data.breedcode }}</td>
+        <td>{{ data.breedcode }}</td>
+    </tr>
+</ng-template>
+
+</p-table>
+
+</div>
+
