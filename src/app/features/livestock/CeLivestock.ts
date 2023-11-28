@@ -11,6 +11,8 @@ export interface CeLivestock {
   purchaseamt:number;
   origin:string;
   sex:string;
+  sire:string;
+  dam:string;
 }
 
 
