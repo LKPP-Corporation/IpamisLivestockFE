@@ -89,6 +89,8 @@ export class FormComponent implements OnDestroy, OnInit {
         origin: '',
         currstatus: '',
         sex:'',
+        sire:'',
+        dam:'',
       };
     }
 
@@ -179,6 +181,8 @@ export class FormComponent implements OnDestroy, OnInit {
     origin: '',
     currstatus: '',
     sex:'',
+    sire:'',
+    dam:'',
   };
 
   parameterTypeId!: number | null;
@@ -211,6 +215,8 @@ export class FormComponent implements OnDestroy, OnInit {
     //this.data1.enterdesc = this.selectedEnterprise;
     this.data1.breedcode = this.selectedBreed;
     this.data1.sex=this.selectedSex;
+    this.data1.sire=this.selectedSire;
+    this.data1.dam=this.selectedDam;
    // this.data1.breeddesc = this.selectedBreed;
 
     //this.data1.dob = this.selectedDob;
