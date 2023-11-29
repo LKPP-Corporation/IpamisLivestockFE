@@ -27,7 +27,7 @@
 
           <div class="field mb-4 col-12 md:col-6">
             <label>Enterprise:</label>
-          <p-dropdown [(ngModel)]="selectedEnterprise" [options]="EnterpriseList" optionValue="code" optionLabel="descp" [filter]="true" filterBy="descp" [showClear]="true" placeholder="Select enterprise">
+          <p-dropdown [(ngModel)]="data1.entercode" [options]="EnterpriseList" optionValue="code" optionLabel="descp" [filter]="true" filterBy="descp" [showClear]="true" placeholder="Select enterprise">
             <ng-template let-enterprise pTemplate="item">
                 <div class="flex align-items-center">
                     <!-- <img src="assets/demo/images/flag/flag_placeholder.png" [class]="'mr-2 flag flag-' + fields.id" style="width:18px"/>-->

@@ -27,6 +27,7 @@
         <th>Breed</th>
         <th>Sire</th>
         <th>Dam</th>
+        <th>Date</th>
         <th>Certificate</th>
     </tr>
   </ng-template>
@@ -40,6 +41,7 @@
         <td>{{ data.breedcode }}</td>
         <td>{{ data.sire }}</td>
         <td>{{ data.dam }}</td>
+        <td>{{ deathDate(data.statusList) }}</td>
         <td><button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" ></button></td>
     </tr>
 </ng-template>

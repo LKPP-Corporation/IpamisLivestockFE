@@ -5,6 +5,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { PhysicalReportService } from '../physical-report.service';
 import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { Livestockstatus } from '../../livestockstatus/livestockstatus';
 
 @Component({
   selector: 'app-mortality-record',
@@ -48,6 +49,13 @@ export class MortalityRecordComponent {
       this.totalRecords = res.totalElements;
       this.loading = false;
     });
+  }
+
+  deathDate(lvs:Livestockstatus[]){
+    const element = lvs.find(v=>v.status==='Death');
+    if (element!==undefined)
+    return element.transdate;
+  else return '-';
   }
 }
 

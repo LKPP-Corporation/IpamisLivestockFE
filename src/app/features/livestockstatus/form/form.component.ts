@@ -19,7 +19,7 @@ export class FormComponent  implements OnDestroy, OnInit{
   homelink = '/livestock/list';
   data: Livestockstatus = {
     id: null,
-    regid:'',
+    tempMasterId:'',
     status:'',
     remark:'',
     soldamt:0.00,
@@ -71,14 +71,15 @@ export class FormComponent  implements OnDestroy, OnInit{
     this.status = [
       {name: 'Active', value: 'Active'},
       {name: 'Death', value:'Death'},
-      {name: 'Calves', value:'Calves'}
+      {name: 'Calves', value:'Calves'},
+      {name: 'Sold', value:'Sold'}
 
     ];
 
 
     this.data = {
       id: null,
-      regid:this.parameterTypeId!,
+      tempMasterId:this.parameterTypeId!,
       status:'',
       remark:'',
       soldamt:0.00,
