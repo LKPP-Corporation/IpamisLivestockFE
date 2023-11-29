@@ -1,5 +1,6 @@
 export interface CeLivestock {
-  id?: number;
+  id: string;
+  tagid:string;
   name: string;
   currstatus:string;
   entercode:number;

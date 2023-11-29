@@ -54,7 +54,7 @@ export class LivestockService {
     console.log(requestParams);
     return this.http.get(this.apiroot+'/ceLivestock/list', requestParams);
   }
-  delete(id: number) {
+  delete(id: string) {
     return this.http.delete(`${this.apiroot}/ceLivestock/${id}`);
   }
 
@@ -65,7 +65,7 @@ export class LivestockService {
   saveCeLivestock(data1: CeLivestock) {
     return this.http.post(`${this.apiroot}/ceLivestock`, data1);
   }
-  getData(id: number) {
+  getData(id: string) {
     return this.http.get(`${this.apiroot}/ceLivestock/${id}`);
   }
 
