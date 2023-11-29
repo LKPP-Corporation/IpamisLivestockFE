@@ -47,7 +47,7 @@ export class ListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/livestockstatus/form', { id: s != null ? s.id : null }]);
   }
 
-  deleteData(event: Event, s: Livestock) {
+  deleteData(event: Event, s: CeLivestock) {
     console.log(s);
     console.log(event);
     this.confirmationService.confirm({

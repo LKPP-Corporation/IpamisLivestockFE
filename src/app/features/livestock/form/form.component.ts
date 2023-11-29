@@ -45,11 +45,11 @@ export class FormComponent implements OnDestroy, OnInit {
       this.router.navigate([this.homelink]);
     } else {
       console.log(this.route.snapshot.paramMap.get('id'));
-      let id = this.route.snapshot.paramMap.get('id');
-      if (id === null || id === 'null' || id === 'undefined')
+      let regid = this.route.snapshot.paramMap.get('id');
+      if (regid === null || regid === 'null' || regid === 'undefined')
         this.parameterTypeId = null;
       else
-        this.parameterTypeId = Number(this.route.snapshot.paramMap.get('id'));
+        this.parameterTypeId = String(this.route.snapshot.paramMap.get('id'));
     }
 
   }
@@ -78,6 +78,8 @@ export class FormComponent implements OnDestroy, OnInit {
       });
     } else {
       this.data1 = {
+        id:'',
+        tagid:'',
         name: '',
         entercode: 0,
         breedcode: 0,
@@ -170,6 +172,8 @@ export class FormComponent implements OnDestroy, OnInit {
   };
 
   data1: CeLivestock = {
+    id:'',
+    tagid:'',
     name: '',
     entercode: 0,
     breedcode: 0,
@@ -185,7 +189,7 @@ export class FormComponent implements OnDestroy, OnInit {
     dam:'',
   };
 
-  parameterTypeId!: number | null;
+  parameterTypeId!: string | null;
   //router: any;
 
 

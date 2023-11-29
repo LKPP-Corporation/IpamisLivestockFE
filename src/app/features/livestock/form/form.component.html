@@ -14,6 +14,18 @@
           </div> -->
           
           <div class="field mb-4 col-12 md:col-6">
+            <label for="regId">Reg ID/Ear Tag (No ID/Tag Telinga): </label><br>
+            <input type="text" pInputText [(ngModel)]="data1.id"> 
+            <span class="ml-2"></span>
+            </div>
+
+            <div class="field mb-4 col-12 md:col-6">
+              <label for="tagId">Tag ID: </label><br>
+              <input type="text" pInputText [(ngModel)]="data1.tagid"> 
+              <span class="ml-2"></span>
+              </div>
+
+          <div class="field mb-4 col-12 md:col-6">
             <label>Enterprise:</label>
           <p-dropdown [(ngModel)]="selectedEnterprise" [options]="EnterpriseList" optionValue="code" optionLabel="descp" [filter]="true" filterBy="descp" [showClear]="true" placeholder="Select enterprise">
             <ng-template let-enterprise pTemplate="item">
@@ -93,11 +105,7 @@
 
       <!-- hyeweeg -->
 
-              <div class="field mb-4 col-12 md:col-6">
-                <label for="regId">Reg ID/Ear Tag (No ID/Tag Telinga): </label><br>
-                <input type="text" pInputText [(ngModel)]="data1.id"> 
-                <span class="ml-2"></span>
-                </div>
+              
 
                 <div class="field mb-4 col-12 md:col-6">
                   <label for="blood">% Blood (Peratusan Baka): </label><br>
