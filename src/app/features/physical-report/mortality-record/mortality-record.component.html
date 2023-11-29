@@ -12,12 +12,11 @@
  [loading]="loading"
  >
 
-<ng-template pTemplate="caption">
+ <ng-template pTemplate="caption">
   <div class="flex align-items-center justify-content-between">
-     <h5 class="m-0">Livestock Information</h5>
+    <h5 class="m-0">Mortality Record</h5>
 </div>
 </ng-template>
-
 <ng-template pTemplate="header">
     <tr>
         <th>Tag ID</th>
@@ -25,9 +24,9 @@
         <th>Sex</th>
         <th>Type</th>
         <th>Breed</th>
-        <th>Status</th>
         <th>Sire</th>
         <th>Dam</th>
+        <th>Certificate</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-data>
@@ -37,9 +36,9 @@
         <td>{{ data.sex }}</td>
         <td>{{ data.entercode }}</td>
         <td>{{ data.breedcode }}</td>
-        <td>{{ data.currstatus }}</td>
         <td>{{ data.sire }}</td>
         <td>{{ data.dam }}</td>
+        <td><button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" ></button></td>
     </tr>
 </ng-template>
 
