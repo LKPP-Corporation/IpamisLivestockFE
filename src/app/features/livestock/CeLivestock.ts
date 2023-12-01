@@ -17,6 +17,7 @@ export interface CeLivestock {
   sire:string;
   dam:string;
   statusList?:Livestockstatus[];
+  blood:number;
 }
 
 

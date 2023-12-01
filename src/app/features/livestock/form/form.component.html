@@ -27,7 +27,7 @@
 
           <div class="field mb-4 col-12 md:col-6">
             <label>Enterprise:</label>
-          <p-dropdown [(ngModel)]="data1.entercode" [options]="EnterpriseList" optionValue="code" optionLabel="descp" [filter]="true" filterBy="descp" [showClear]="true" placeholder="Select enterprise">
+          <p-dropdown [(ngModel)]="selectedEnterprise" [options]="EnterpriseList" optionValue="code" optionLabel="descp" [filter]="true" filterBy="descp" [showClear]="true" placeholder="Select enterprise">
             <ng-template let-enterprise pTemplate="item">
                 <div class="flex align-items-center">
                     <!-- <img src="assets/demo/images/flag/flag_placeholder.png" [class]="'mr-2 flag flag-' + fields.id" style="width:18px"/>-->
@@ -43,11 +43,24 @@
           <span class="ml-2"></span>
         </div>
 
-        <div class="field mb-4 col-12 md:col-6">
+        <!-- <div class="field mb-4 col-12 md:col-6">
           <label>Status(Status):</label>
             <input type="text" pInputText [(ngModel)]="data1.currstatus"> 
             <span class="ml-2"></span>
-          </div>
+          </div> -->
+
+          <div class="field mb-4 col-12 md:col-6">
+            <label>Status(Status):</label>
+          <p-dropdown [(ngModel)]="currstatus" [options]="currstatus" optionValue="name" optionLabel="name" [filter]="true" filterBy="code" [showClear]="true" placeholder="Select status">
+            <ng-template let-currstatus pTemplate="item">
+                <div class="flex align-items-center">
+                    <!-- <img src="assets/demo/images/flag/flag_placeholder.png" [class]="'mr-2 flag flag-' + fields.id" style="width:18px"/>-->
+                    <div>{{currstatus.code}} - {{currstatus.name}}</div>
+                </div>
+            </ng-template>
+        </p-dropdown>
+        </div>
+
          
           
 
@@ -79,7 +92,7 @@
 
           <div class="field mb-4 col-12 md:col-6">
             <label>Sex(Jantina):</label>
-          <p-dropdown [(ngModel)]="selectedSex" [options]="sex" optionValue="name" optionLabel="name" [filter]="true" filterBy="code" [showClear]="true" placeholder="Select sex">
+          <p-dropdown [(ngModel)]="sex" [options]="sex" optionValue="name" optionLabel="name" [filter]="true" filterBy="code" [showClear]="true" placeholder="Select sex">
             <ng-template let-sex pTemplate="item">
                 <div class="flex align-items-center">
                     <!-- <img src="assets/demo/images/flag/flag_placeholder.png" [class]="'mr-2 flag flag-' + fields.id" style="width:18px"/>-->
@@ -105,11 +118,13 @@
 
       <!-- hyeweeg -->
 
+
+      
               
 
                 <div class="field mb-4 col-12 md:col-6">
                   <label for="blood">% Blood (Peratusan Baka): </label><br>
-                  <input type="text" pInputText>
+                  <input type="text" pInputText [(ngModel)]="data1.blood">
                 <span class="ml-2"></span>
                   </div>
 

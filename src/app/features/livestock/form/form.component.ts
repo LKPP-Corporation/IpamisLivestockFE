@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
+import { MessageService, SelectItem } from 'primeng/api';
 import { LivestockService } from '../livestock.service';
 import { Livestock } from '../livestock';
 import { EnterpriseInfo } from '../enterpriseInfo';
@@ -19,19 +19,23 @@ import { CeLivestock } from '../CeLivestock';
 export class FormComponent implements OnDestroy, OnInit {
 
   
-
+  //selectedDrop: SelectItem = { value: '' };
   EnterpriseList: EnterpriseInfo[] = [];
-  selectedEnterprise:any;
-  selectedSex:any;
+  selectedEnterprise:SelectItem={value:''};
+  selectedSex:SelectItem={value:''};
+  selectedCurrstatus:SelectItem={value:''};
+  selectedBreed:SelectItem={value:''};
+  //selectedSex:any;
   sex:any;
   selectedSire:any;
   selectedDam:any;
   selectedDob:string='';
-
+  currstatus:any;
+ // selectedCurrstatus:any;
   //selectedEntCode: string = '';
 //selectedEntDescription: string = '';
 
-  selectedBreed:any;
+  //selectedBreed:any;
   BreedList:SpeciesInfo[]=[];
 
   SireList:CeLivestock[]=[];
@@ -67,6 +71,13 @@ export class FormComponent implements OnDestroy, OnInit {
     
     ];
 
+    this.currstatus = [
+      {code: 'A', name: 'Active'},
+      {code: 'N', name:'New'}
+  
+    
+    ];
+
     if (this.parameterTypeId != null) {
       console.log(this.parameterTypeId);
       this.lvc.getData(this.parameterTypeId).pipe(takeUntil(this.unsubscribe$)).subscribe({
@@ -93,6 +104,7 @@ export class FormComponent implements OnDestroy, OnInit {
         sex:'',
         sire:'',
         dam:'',
+        blood:0,
       };
     }
 
@@ -164,12 +176,12 @@ export class FormComponent implements OnDestroy, OnInit {
   ref!: DynamicDialogRef;
   unsubscribe$: Subject<void> = new Subject<void>();
   homelink = '/livestock/list';
-  data: Livestock = {
-    name: '',
-    remark: '',
-    price: 0,
-    quantity: 0,
-  };
+  // data: Livestock = {
+  //   name: '',
+  //   remark: '',
+  //   price: 0,
+  //   quantity: 0,
+  // };
 
   data1: CeLivestock = {
     id:'',
@@ -187,6 +199,7 @@ export class FormComponent implements OnDestroy, OnInit {
     sex:'',
     sire:'',
     dam:'',
+    blood:0,
   };
 
   parameterTypeId!: string | null;
@@ -215,12 +228,14 @@ export class FormComponent implements OnDestroy, OnInit {
     //   }
     // });
 
-    this.data1.entercode = this.selectedEnterprise;
+    //this.data1.entercode = this.selectedEnterprise;
     //this.data1.enterdesc = this.selectedEnterprise;
-    this.data1.breedcode = this.selectedBreed;
-    this.data1.sex=this.selectedSex;
+    //this.data1.breedcode = this.selectedBreed;
+    //this.data1.sex=this.selectedSex;
     this.data1.sire=this.selectedSire;
     this.data1.dam=this.selectedDam;
+    //this.data1.currstatus=this.selectedCurrstatus;
+    
    // this.data1.breeddesc = this.selectedBreed;
 
     //this.data1.dob = this.selectedDob;
